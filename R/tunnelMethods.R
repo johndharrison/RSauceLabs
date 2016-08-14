@@ -1,4 +1,4 @@
-## tunnelMethds.R - compiled by RoxygenReady, a package by @vertesy
+## tunnelMethods.R - compiled by RoxygenReady, a package by @vertesy
 
 
 #' getTunnels 
@@ -10,7 +10,7 @@
 #' @export 
 
 getTunnels <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/:username/tunnels", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getTunnels", json = body, ...)
 }
 
@@ -24,7 +24,8 @@ getTunnels <-function (account, ...) {
 #' @export 
 
 getTunnel <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/:username/tunnels/:tunnel_id", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getTunnel", json = body, ...)
 }
 
@@ -38,7 +39,8 @@ getTunnel <-function (account, ...) {
 #' @export 
 
 deleteTunnel <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/:username/tunnels/:tunnel_id", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}", 
+		data = obj)
 	res <- queryAPI(verb = DELETE, url = build_url(pathURL), source = "deleteTunnel", json = body, ...)
 }
 
