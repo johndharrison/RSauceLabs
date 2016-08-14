@@ -47,7 +47,13 @@ appMethods <- setNames(lapply(names(appMethods), function(x){
     })
   )
 }), names(appMethods))
-
+orgVars <- list(":username", ":automation_api", ":job_id",
+     ":file_name", ":tunnel_id", ":your_file_name")
+newVars <- list("{{username}}", "{{automation_api}}", "{{job_id}}",
+                   "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}")
+temp <- appMethods$url
+for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp, fixed = TRUE)
+appMethods$url <- temp
 appMethods <- rbindlist(appMethods, fill = TRUE)
 setnames(appMethods, tocamel(tolower(names(appMethods))))
 appMethods[, args := sapply(requestFields, function(x){
@@ -78,11 +84,12 @@ appMethods[, RSLFuncs := gsub("js tests, js tests", "js_tests", RSLFuncs)]
 appMethods[,write(file = paste0("R/", group, ".R"), paste(RSLFuncs, collapse = "")), by = group]
 
 # create roxygen skeletons for files:
-lapply(list.files("R", full.names = TRUE), function(x){
+lapply(appMethods[, unique(paste0("R/", group, ".R"))], function(x){
   RoxygenReady(x, overview =  FALSE)
 })
 
-appFiles <- list.files("R", full.names = TRUE)
+appFiles <- appMethods[, unique(paste0("R/", group, ".R"))]
+appFiles <- c(appFiles, paste0(appFiles, ".annot.R"))
 annotInd <- grepl("annot", appFiles)
 file.remove(appFiles[!annotInd])
 file.rename(appFiles[annotInd], appFiles[!annotInd])
