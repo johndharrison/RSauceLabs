@@ -10,7 +10,7 @@
 #' @export 
 
 getUser <-function (account, ...) {
-	pathTemplate <- whisker.render("users/:username", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUser", json = body, ...)
 }
 
@@ -28,7 +28,7 @@ getUser <-function (account, ...) {
 #' @export 
 
 createUser <-function (account, username, password, name, email, ...) {
-	pathTemplate <- whisker.render("users/:username", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
 	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "createUser", json = body, ...)
 }
 
@@ -42,7 +42,8 @@ createUser <-function (account, username, password, name, email, ...) {
 #' @export 
 
 getUserConcurrency <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/:username/concurrency", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserConcurrency", json = body, 
 		...)
 }
@@ -59,7 +60,8 @@ getUserConcurrency <-function (account, ...) {
 #' @export 
 
 getListOfSubAccounts <-function (account, from, limit, ...) {
-	pathTemplate <- whisker.render("users/:username/list-subaccounts", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getListOfSubAccounts", json = body, 
 		...)
 }
@@ -76,7 +78,7 @@ getListOfSubAccounts <-function (account, from, limit, ...) {
 #' @export 
 
 getListOfSiblingAccounts <-function (account, page, per_page, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/:username/siblings", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/siblings", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getListOfSiblingAccounts", json = body, 
 		...)
 }
@@ -91,7 +93,8 @@ getListOfSiblingAccounts <-function (account, page, per_page, ...) {
 #' @export 
 
 getSubAccountInformation <-function (account, ...) {
-	pathTemplate <- whisker.render("users/:username/subaccounts ", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/subaccounts ", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getSubAccountInformation", json = body, 
 		...)
 }
@@ -106,7 +109,8 @@ getSubAccountInformation <-function (account, ...) {
 #' @export 
 
 changeAccessKey <-function (account, ...) {
-	pathTemplate <- whisker.render("users/:username/accesskey/change", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change", 
+		data = obj)
 	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "changeAccessKey", json = body, ...)
 }
 

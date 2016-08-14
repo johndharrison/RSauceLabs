@@ -12,7 +12,7 @@ slURL <- list(
   infoMethods = "https://wiki.saucelabs.com/display/DOCS/Information+Methods",
   jobMethods = "https://wiki.saucelabs.com/display/DOCS/Job+Methods",
   actUsageMethods = "https://wiki.saucelabs.com/display/DOCS/Test+Activity+and+Usage+Methods",
-  tunnelMethds = "https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods",
+  tunnelMethods = "https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods",
   tempStorageMethods = "https://wiki.saucelabs.com/display/DOCS/Temporary+Storage+Methods",
   jsUnitTestMethods = "https://wiki.saucelabs.com/display/DOCS/JavaScript+Unit+Testing+Methods"
 )
@@ -47,15 +47,21 @@ appMethods <- setNames(lapply(names(appMethods), function(x){
     })
   )
 }), names(appMethods))
-orgVars <- list(":username", ":automation_api", ":job_id",
-     ":file_name", ":tunnel_id", ":your_file_name")
-newVars <- list("{{username}}", "{{automation_api}}", "{{job_id}}",
-                   "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}")
-temp <- appMethods$url
-for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp, fixed = TRUE)
-appMethods$url <- temp
 appMethods <- rbindlist(appMethods, fill = TRUE)
 setnames(appMethods, tocamel(tolower(names(appMethods))))
+
+orgVars <- list(":username", ":automation_api", ":job_id",
+     ":file_name", ":tunnel_id", ":your_file_name", "^/rest/v1/", "https://saucelabs.com/rest/v1/")
+newVars <- list("{{username}}", "{{automation_api}}", "{{job_id}}",
+                   "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}", "", "")
+temp <- appMethods$url
+for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp)
+appMethods[, version := ifelse(grepl("/rest/v1.1/", temp), "v1.1", "v1")]
+temp <- gsub("^(info/platforms/\\{\\{automation_api\\}\\}).*", "\\1", temp)
+temp <- gsub("^(\\{\\{username\\}\\}/jobs/\\{\\{job_id\\}\\}/assets/\\{\\{file_name\\}\\}).*", "\\1", temp)
+appMethods$url <- gsub("https://saucelabs.com/rest/v1.1/", "", temp)
+
+
 appMethods[, args := sapply(requestFields, function(x){
   rF <- sub("(.*):(.*)", "\\1", x)
   rF <- sub("-", "_", rF)
@@ -68,7 +74,7 @@ funcTemp <- list(
   account = "
 {{method}} <- function(account{{{args}}}){
   # {{description}}
-  pathTemplate <- whisker.render(\"{{url}}\", data = obj)
+  pathTemplate <- whisker.render(\"https://saucelabs.com/rest/{{version}}/{{url}}\", data = obj)
   res <- queryAPI(verb = {{methodType}}, url = build_url(pathURL), source = \"{{method}}\", json = body,...)
 }
 ")

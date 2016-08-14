@@ -10,7 +10,8 @@
 #' @export 
 
 uploadFile <-function (account, ...) {
-	pathTemplate <- whisker.render("storage/:username/:your_file_name", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/storage/{{username}}/{{your_file_name}}", 
+		data = obj)
 	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "uploadFile", json = body, ...)
 }
 
@@ -24,7 +25,7 @@ uploadFile <-function (account, ...) {
 #' @export 
 
 getStoredFiles <-function (account, ...) {
-	pathTemplate <- whisker.render("storage/:username", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/storage/{{username}}", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getStoredFiles", json = body, ...)
 }
 

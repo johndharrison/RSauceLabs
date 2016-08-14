@@ -13,7 +13,7 @@
 #' @export 
 
 startJsUnitTests <-function (account, platforms, url, framework, ...) {
-	pathTemplate <- whisker.render(":username/js-tests", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests", data = obj)
 	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "startJsUnitTests", json = body, 
 		...)
 }
@@ -29,7 +29,7 @@ startJsUnitTests <-function (account, platforms, url, framework, ...) {
 #' @export 
 
 getJsUnitTestStatus <-function (account, js_tests, ...) {
-	pathTemplate <- whisker.render(":username/js-tests/status", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests/status", data = obj)
 	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "getJsUnitTestStatus", json = body, 
 		...)
 }

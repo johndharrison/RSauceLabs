@@ -16,7 +16,7 @@
 #' @export 
 
 updateJob <-function (account, name, tags, public, passed, build, custom_data, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}", data = obj)
 	res <- queryAPI(verb = PUT, url = build_url(pathURL), source = "updateJob", json = body, ...)
 }
 
@@ -30,7 +30,7 @@ updateJob <-function (account, name, tags, public, passed, build, custom_data, .
 #' @export 
 
 deleteJob <-function (account, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}", data = obj)
 	res <- queryAPI(verb = DELETE, url = build_url(pathURL), source = "deleteJob", json = body, ...)
 }
 
@@ -44,7 +44,8 @@ deleteJob <-function (account, ...) {
 #' @export 
 
 stopJob <-function (account, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id/stop", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/stop", 
+		data = obj)
 	res <- queryAPI(verb = PUT, url = build_url(pathURL), source = "stopJob", json = body, ...)
 }
 
@@ -58,7 +59,8 @@ stopJob <-function (account, ...) {
 #' @export 
 
 getJobAssetNames <-function (account, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id/assets", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getJobAssetNames", json = body, ...)
 }
 
@@ -72,7 +74,7 @@ getJobAssetNames <-function (account, ...) {
 #' @export 
 
 getJobAssetFiles <-function (account, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id/assets/:file_nameAccepted Values for :file_name selenium-server.logvideo.flvXXXXscreenshot.png (where XXXX is a number between 0000 and 9999)final_screenshot.png ", 
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets/{{file_name}}", 
 		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getJobAssetFiles", json = body, ...)
 }
@@ -87,7 +89,8 @@ getJobAssetFiles <-function (account, ...) {
 #' @export 
 
 deleteJobAssets <-function (account, ...) {
-	pathTemplate <- whisker.render(":username/jobs/:job_id/assets", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets", 
+		data = obj)
 	res <- queryAPI(verb = DELETE, url = build_url(pathURL), source = "deleteJobAssets", json = body, 
 		...)
 }

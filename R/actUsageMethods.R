@@ -10,7 +10,8 @@
 #' @export 
 
 getRealTimeJobActivity <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/:username/concurrency", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency", 
+		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getRealTimeJobActivity", json = body, 
 		...)
 }
@@ -25,7 +26,7 @@ getRealTimeJobActivity <-function (account, ...) {
 #' @export 
 
 getUserActivity <-function (account, ...) {
-	pathTemplate <- whisker.render("/rest/v1/:username/activity", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/activity", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserActivity", json = body, ...)
 }
 
@@ -39,7 +40,7 @@ getUserActivity <-function (account, ...) {
 #' @export 
 
 getUserAccountUsage <-function (account, ...) {
-	pathTemplate <- whisker.render("users/:username/usage", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/usage", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserAccountUsage", json = body, 
 		...)
 }

@@ -10,7 +10,7 @@
 #' @export 
 
 getSauceLabsStatus <-function (account, ...) {
-	pathTemplate <- whisker.render("info/status", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/info/status", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getSauceLabsStatus", json = body, 
 		...)
 }
@@ -25,7 +25,7 @@ getSauceLabsStatus <-function (account, ...) {
 #' @export 
 
 getSupportedPlatforms <-function (account, ...) {
-	pathTemplate <- whisker.render("info/platforms/:automation_apiAccepted Values for automation_api allappiumwebdriver ", 
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/info/platforms/{{automation_api}}", 
 		data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getSupportedPlatforms", json = body, 
 		...)
@@ -41,7 +41,7 @@ getSupportedPlatforms <-function (account, ...) {
 #' @export 
 
 getAppiumEolDates <-function (account, ...) {
-	pathTemplate <- whisker.render("info/platforms/appium/eol", data = obj)
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/info/platforms/appium/eol", data = obj)
 	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getAppiumEolDates", json = body, 
 		...)
 }
