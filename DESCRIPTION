@@ -1,7 +1,7 @@
 Package: RSauceLabs
 Type: Package
 Title: R Wrapper for SauceLabs REST API
-Version: 0.1.0
+Version: 0.1.1
 Author: John Harrison <johndharrison0@gmail.com>
 Maintainer: John Harrison <johndharrison0@gmail.com>
 Description: Wrapper around the Sauce Labs REST API for R.
