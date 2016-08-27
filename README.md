@@ -19,4 +19,4 @@ To install the current developement version of RSauceLabs run:
 
 ```
 devtools::install_github("johndharrison/RSauceLabs")
-``
+```
