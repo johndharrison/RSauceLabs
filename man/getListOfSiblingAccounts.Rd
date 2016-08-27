@@ -2,18 +2,24 @@
 % Please edit documentation in R/accountMethods.R
 \name{getListOfSiblingAccounts}
 \alias{getListOfSiblingAccounts}
-\title{getListOfSiblingAccounts}
+\title{Get a list of sibling accounts}
 \usage{
-getListOfSiblingAccounts(account, page, per_page, ...)
+getListOfSiblingAccounts(account, username = Sys.getenv("SLUSER"),
+  page = NULL, per_page = 50L, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{page}{}
+\item{username}{SauceLabs username}
 
-\item{per_page}{}
+\item{page}{optional defaults to NULL}
 
-\item{...}{}
+\item{per_page}{results per page (max 50L). Defaults to 50L}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get a list of sibling accounts associated with provided account
 }
 \examples{
 getListOfSiblingAccounts (account =  , page =  , per_page =  , ... =  )

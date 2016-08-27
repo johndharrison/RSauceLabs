@@ -2,18 +2,24 @@
 % Please edit documentation in R/accountMethods.R
 \name{getListOfSubAccounts}
 \alias{getListOfSubAccounts}
-\title{getListOfSubAccounts}
+\title{Get a list of sub accounts}
 \usage{
-getListOfSubAccounts(account, from, limit, ...)
+getListOfSubAccounts(account, username = Sys.getenv("SLUSER"), from = NULL,
+  limit = 100L, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{from}{}
+\item{username}{SauceLabs username}
 
-\item{limit}{}
+\item{from}{Get user from this user number. Defaults to NULL}
 
-\item{...}{}
+\item{limit}{The limit on users returned. Defaults to 50L (50L is the max).}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get a list of sub accounts associated with a parent account
 }
 \examples{
 getListOfSubAccounts (account =  , from =  , limit =  , ... =  )

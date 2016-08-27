@@ -2,14 +2,19 @@
 % Please edit documentation in R/accountMethods.R
 \name{changeAccessKey}
 \alias{changeAccessKey}
-\title{changeAccessKey}
+\title{Change access key}
 \usage{
-changeAccessKey(account, ...)
+changeAccessKey(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Change access key of an account
 }
 \examples{
 changeAccessKey (account =  , ... =  )

@@ -2,14 +2,19 @@
 % Please edit documentation in R/accountMethods.R
 \name{getUserConcurrency}
 \alias{getUserConcurrency}
-\title{getUserConcurrency}
+\title{Check account concurrency limits}
 \usage{
-getUserConcurrency(account, ...)
+getUserConcurrency(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Check account concurrency limits
 }
 \examples{
 getUserConcurrency (account =  , ... =  )

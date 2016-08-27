@@ -2,14 +2,19 @@
 % Please edit documentation in R/accountMethods.R
 \name{getUser}
 \alias{getUser}
-\title{getUser}
+\title{Access basic account information}
 \usage{
-getUser(account, ...)
+getUser(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Access basic account information
 }
 \examples{
 getUser (account =  , ... =  )

@@ -2,22 +2,28 @@
 % Please edit documentation in R/accountMethods.R
 \name{createUser}
 \alias{createUser}
-\title{createUser}
+\title{Create a sub account}
 \usage{
-createUser(account, username, password, name, email, ...)
+createUser(account, username = Sys.getenv("SLUSER"), newUsername, password,
+  name, email, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{username}{}
+\item{username}{SauceLabs username}
 
-\item{password}{}
+\item{newUsername}{The username of the new user you wish to create}
 
-\item{name}{}
+\item{password}{The password for the new user you wish to create}
 
-\item{email}{}
+\item{name}{The name of the new user you wish to create}
 
-\item{...}{}
+\item{email}{The email of the new user you wish to create}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Create a sub account
 }
 \examples{
 createUser (account =  , username =  , password =  , name =  , email =  , ... =  )

@@ -2,14 +2,19 @@
 % Please edit documentation in R/accountMethods.R
 \name{getSubAccountInformation}
 \alias{getSubAccountInformation}
-\title{getSubAccountInformation}
+\title{Get information about a sub account}
 \usage{
-getSubAccountInformation(account, ...)
+getSubAccountInformation(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get information about a sub account
 }
 \examples{
 getSubAccountInformation (account =  , ... =  )
