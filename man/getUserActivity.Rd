@@ -2,14 +2,19 @@
 % Please edit documentation in R/actUsageMethods.R
 \name{getUserActivity}
 \alias{getUserActivity}
-\title{getUserActivity}
+\title{Get User Activity}
 \usage{
-getUserActivity(account, ...)
+getUserActivity(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get currently running job counts broken down by account and job status.
 }
 \examples{
 getUserActivity (account =  , ... =  )

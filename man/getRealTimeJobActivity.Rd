@@ -2,14 +2,19 @@
 % Please edit documentation in R/actUsageMethods.R
 \name{getRealTimeJobActivity}
 \alias{getRealTimeJobActivity}
-\title{getRealTimeJobActivity}
+\title{Get Real-Time Job Activity}
 \usage{
-getRealTimeJobActivity(account, ...)
+getRealTimeJobActivity(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get information about concurrency, minutes and jobs used by the user over a specific duration (default 90 days). Concurrency is separated in mean and peak concurrency.
 }
 \examples{
 getRealTimeJobActivity (account =  , ... =  )

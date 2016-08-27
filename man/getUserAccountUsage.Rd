@@ -2,14 +2,19 @@
 % Please edit documentation in R/actUsageMethods.R
 \name{getUserAccountUsage}
 \alias{getUserAccountUsage}
-\title{getUserAccountUsage}
+\title{Get User Account Usage}
 \usage{
-getUserAccountUsage(account, ...)
+getUserAccountUsage(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Access historical account usage data
 }
 \examples{
 getUserAccountUsage (account =  , ... =  )
