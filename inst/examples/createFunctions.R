@@ -5,7 +5,7 @@ library(magrittr)
 library(rvest)
 library(data.table)
 library(rapportools)
-library(RoxygenReady) #https://github.com/vertesy/roxygenready
+library(RoxygenReady) #https://github.com/vertesy/roxygenready devtools::install_github(repo = "vertesy/RoxygenReady/RoxygenReady", ref = "cdf661e79f3a75405f4e30a3c2f8e6c39158d67f")
 library(whisker)
 slURL <- list(
   accountMethods = "https://wiki.saucelabs.com/display/DOCS/Account+Methods",
@@ -74,8 +74,11 @@ funcTemp <- list(
   account = "
 {{method}} <- function(account{{{args}}}){
   # {{description}}
+  obj <- list()
   pathTemplate <- whisker.render(\"https://saucelabs.com/rest/{{version}}/{{url}}\", data = obj)
-  res <- queryAPI(verb = {{methodType}}, url = build_url(pathURL), source = \"{{method}}\", json = body,...)
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = {{methodType}}, account = account, url = build_url(pathURL), source = \"{{method}}\", json = body,...)
+  res
 }
 ")
 
