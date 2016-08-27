@@ -1,48 +1,61 @@
 ## actUsageMethods.R - compiled by RoxygenReady, a package by @vertesy
 
 
-#' getRealTimeJobActivity 
-#' 
-#' getRealTimeJobActivity <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Get Real-Time Job Activity
+#'
+#' Get information about concurrency, minutes and jobs used by the user over a specific duration (default 90 days). Concurrency is separated in mean and peak concurrency.
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getRealTimeJobActivity (account =  , ... =  )
-#' @export 
+#' @export
 
-getRealTimeJobActivity <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency", 
+getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
 		data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getRealTimeJobActivity", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getRealTimeJobActivity", ...)
+	res
 }
 
 
-#' getUserActivity 
-#' 
-#' getUserActivity <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Get User Activity
+#'
+#' Get currently running job counts broken down by account and job status.
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getUserActivity (account =  , ... =  )
-#' @export 
+#' @export
 
-getUserActivity <-function (account, ...) {
+getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/activity", data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserActivity", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserActivity", ...)
+	res
 }
 
 
-#' getUserAccountUsage 
-#' 
-#' getUserAccountUsage <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Get User Account Usage
+#'
+#' Access historical account usage data
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getUserAccountUsage (account =  , ... =  )
-#' @export 
+#' @export
 
-getUserAccountUsage <-function (account, ...) {
+getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/usage", data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserAccountUsage", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserAccountUsage", ...)
+	res
 }
 
 
