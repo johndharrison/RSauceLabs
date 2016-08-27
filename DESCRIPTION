@@ -6,7 +6,7 @@ Author: John Harrison <johndharrison0@gmail.com>
 Maintainer: John Harrison <johndharrison0@gmail.com>
 Description: Wrapper around the Sauce Labs REST API for R.
 Depends:
-    R (>= 3.0.0),httr,jsonlite,xml2
+    R (>= 3.0.0),httr,jsonlite,xml2,whisker
 Encoding: UTF-8
 License: GPL-3
 RoxygenNote: 5.0.1
