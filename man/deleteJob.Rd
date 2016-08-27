@@ -2,14 +2,21 @@
 % Please edit documentation in R/jobMethods.R
 \name{deleteJob}
 \alias{deleteJob}
-\title{deleteJob}
+\title{Delete Job}
 \usage{
-deleteJob(account, ...)
+deleteJob(account, username = Sys.getenv("SLUSER"), jobID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{jobID}{Id of the job to delete}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Removes the job from the system with all the linked assets
 }
 \examples{
 deleteJob (account =  , ... =  )

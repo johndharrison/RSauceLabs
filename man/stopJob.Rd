@@ -2,14 +2,21 @@
 % Please edit documentation in R/jobMethods.R
 \name{stopJob}
 \alias{stopJob}
-\title{stopJob}
+\title{Stop Job}
 \usage{
-stopJob(account, ...)
+stopJob(account, username = Sys.getenv("SLUSER"), jobID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{jobID}{Id of the job to stop}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Terminates a running job
 }
 \examples{
 stopJob (account =  , ... =  )

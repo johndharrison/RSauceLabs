@@ -2,14 +2,21 @@
 % Please edit documentation in R/jobMethods.R
 \name{deleteJobAssets}
 \alias{deleteJobAssets}
-\title{deleteJobAssets}
+\title{Delete Job Assets}
 \usage{
-deleteJobAssets(account, ...)
+deleteJobAssets(account, username = Sys.getenv("SLUSER"), jobID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{jobID}{Id of the job to delete assests from}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Delete all the assets captured during a test run. This includes the screencast recording, logs, and all screenshots.
 }
 \examples{
 deleteJobAssets (account =  , ... =  )

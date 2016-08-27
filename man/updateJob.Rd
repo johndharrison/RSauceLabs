@@ -2,26 +2,35 @@
 % Please edit documentation in R/jobMethods.R
 \name{updateJob}
 \alias{updateJob}
-\title{updateJob}
+\title{Update Job}
 \usage{
-updateJob(account, name, tags, public, passed, build, custom_data, ...)
+updateJob(account, username = Sys.getenv("SLUSER"), jobID, name = NULL,
+  tags = NULL, public = NULL, passed = NULL, build = NULL, custom_data,
+  ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{name}{}
+\item{username}{SauceLabs username}
 
-\item{tags}{}
+\item{jobID}{Id of the job to edit}
 
-\item{public}{}
+\item{name}{Change the job name}
 
-\item{passed}{}
+\item{tags}{Change the job tags}
 
-\item{build}{}
+\item{public}{Set job visibility to "public", "public restricted", "share" (true), "team" (false) or "private"}
 
-\item{custom_data}{}
+\item{passed}{Set whether the job passed or not on the user end}
 
-\item{...}{}
+\item{build}{The build number tested by this test}
+
+\item{custom_data}{A  set of key-value pairs with any extra info that a user would like to add to the job. Note that the max data allowed is 64KB}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Edit an existing job
 }
 \examples{
 updateJob (account =  , name =  , tags =  , public =  , passed =  , build =  , custom_data =  , ... =  )

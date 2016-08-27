@@ -2,14 +2,21 @@
 % Please edit documentation in R/jobMethods.R
 \name{getJobAssetNames}
 \alias{getJobAssetNames}
-\title{getJobAssetNames}
+\title{Get Job Asset Names}
 \usage{
-getJobAssetNames(account, ...)
+getJobAssetNames(account, username = Sys.getenv("SLUSER"), jobID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{jobID}{Id of the job to stop}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get details about the static assets collected for a specific job
 }
 \examples{
 getJobAssetNames (account =  , ... =  )

@@ -2,14 +2,25 @@
 % Please edit documentation in R/jobMethods.R
 \name{getJobAssetFiles}
 \alias{getJobAssetFiles}
-\title{getJobAssetFiles}
+\title{Get Job Asset Files}
 \usage{
-getJobAssetFiles(account, ...)
+getJobAssetFiles(account, username = Sys.getenv("SLUSER"), jobID,
+  fileName = "selenium-server.log", ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{jobID}{Id of the job to get assets from}
+
+\item{fileName}{Accepted Values for fileName "selenium-server.log" "video.flv" "XXXXscreenshot.png" (where XXXX is a number between 0000 and 9999) "final_screenshot.png"}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Download job assets. After a job completes, all assets created during the job are available via this API. These include the screencast recording, logs, and screenshots taken on crucial steps.
+The job assests will be deleted from the test page after 30 days. Thus, after 30 days all your test commands, logs, screenshots and the screencast recording will be gone. This is the reason why we strongly recommend to download your job assets if this is an information that you must keep in your records.
 }
 \examples{
 getJobAssetFiles (account =  , ... =  )
