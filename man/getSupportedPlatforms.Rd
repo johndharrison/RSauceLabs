@@ -2,14 +2,19 @@
 % Please edit documentation in R/infoMethods.R
 \name{getSupportedPlatforms}
 \alias{getSupportedPlatforms}
-\title{getSupportedPlatforms}
+\title{Get Supported Platforms}
 \usage{
-getSupportedPlatforms(account, ...)
+getSupportedPlatforms(account, autoAPI = "webdriver", ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{autoAPI}{Accepted Values for autoAPI "all", "appium", "webdriver". Defaults to "webdriver"}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get a list of objects describing all the OS and browser platforms currently supported on Sauce Labs. Choose the automation API you need, bearing in mind that WebDriver and Selenium RC are each compatible with a different set of platforms.
 }
 \examples{
 getSupportedPlatforms (account =  , ... =  )

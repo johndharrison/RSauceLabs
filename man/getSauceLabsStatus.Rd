@@ -2,14 +2,17 @@
 % Please edit documentation in R/infoMethods.R
 \name{getSauceLabsStatus}
 \alias{getSauceLabsStatus}
-\title{getSauceLabsStatus}
+\title{Get Sauce Labs Status}
 \usage{
 getSauceLabsStatus(account, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get the current status of Sauce Labs services
 }
 \examples{
 getSauceLabsStatus (account =  , ... =  )

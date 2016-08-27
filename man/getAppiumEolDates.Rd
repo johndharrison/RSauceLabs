@@ -7,9 +7,11 @@
 getAppiumEolDates(account, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{...}{Additonal function arguments - Currently unused.}
+
+\item{username}{SauceLabs username}
 }
 \examples{
 getAppiumEolDates (account =  , ... =  )
