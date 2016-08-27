@@ -1,117 +1,158 @@
 ## accountMethods.R - compiled by RoxygenReady, a package by @vertesy
 
 
-#' getUser 
-#' 
-#' getUser <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Access basic account information
+#'
+#' Access basic account information
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getUser (account =  , ... =  )
-#' @export 
+#' @export
 
-getUser <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUser", json = body, ...)
+getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
+  obj <- list()
+  obj$username <- username
+  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, url = build_url(pathURL), account = account, source = "getUser", body = NULL, ...)
+  res
 }
 
 
-#' createUser 
-#' 
-#' createUser <- function(account, username, password, name, email, ...){
-#' @param account 
-#' @param username 
-#' @param password 
-#' @param name 
-#' @param email 
-#' @param ... 
+#' Create a sub account
+#'
+#' Create a sub account
+#' @template account
+#' @param username SauceLabs username
+#' @param newUsername The username of the new user you wish to create
+#' @param password The password for the new user you wish to create
+#' @param name The name of the new user you wish to create
+#' @param email The email of the new user you wish to create
+#' @template ellipsis
 #' @examples createUser (account =  , username =  , password =  , name =  , email =  , ... =  )
-#' @export 
+#' @export
 
-createUser <-function (account, username, password, name, email, ...) {
+createUser <-function (account, username = Sys.getenv("SLUSER"), newUsername, password, name, email, ...) {
+	obj <- list()
+	obj$username = username
+	body <- toJSON(list(
+	  username = newUsername,
+	  password = password,
+	  name = name,
+	  email = email
+	), auto_unbox = TRUE)
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
-	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "createUser", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "createUser",
+		body = body, ...)
+	res
 }
 
 
-#' getUserConcurrency 
-#' 
-#' getUserConcurrency <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Check account concurrency limits
+#'
+#' Check account concurrency limits
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getUserConcurrency (account =  , ... =  )
-#' @export 
+#' @export
 
-getUserConcurrency <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency", 
+getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
 		data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getUserConcurrency", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserConcurrency", ...)
+	res
 }
 
 
-#' getListOfSubAccounts 
-#' 
-#' getListOfSubAccounts <- function(account, from, limit, ...){
-#' @param account 
-#' @param from 
-#' @param limit 
-#' @param ... 
+#' Get a list of sub accounts
+#'
+#' Get a list of sub accounts associated with a parent account
+#' @template account
+#' @param username SauceLabs username
+#' @param from Get user from this user number. Defaults to NULL
+#' @param limit The limit on users returned. Defaults to 50L (50L is the max).
+#' @template ellipsis
 #' @examples getListOfSubAccounts (account =  , from =  , limit =  , ... =  )
-#' @export 
+#' @export
 
-getListOfSubAccounts <-function (account, from, limit, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts", 
+getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"), from = NULL, limit = 100L, ...) {
+	obj <- list()
+	obj$username = username
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts",
 		data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getListOfSubAccounts", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getListOfSubAccounts",
+		query = list(from = from, limit = limit), ...)
+	res
 }
 
 
-#' getListOfSiblingAccounts 
-#' 
-#' getListOfSiblingAccounts <- function(account, page, per_page, ...){
-#' @param account 
-#' @param page 
-#' @param per_page 
-#' @param ... 
+#' Get a list of sibling accounts
+#'
+#' Get a list of sibling accounts associated with provided account
+#' @template account
+#' @param username SauceLabs username
+#' @param page optional defaults to NULL
+#' @param per_page results per page (max 50L). Defaults to 50L
+#' @template ellipsis
 #' @examples getListOfSiblingAccounts (account =  , page =  , per_page =  , ... =  )
-#' @export 
+#' @export
 
-getListOfSiblingAccounts <-function (account, page, per_page, ...) {
+getListOfSiblingAccounts <-function (account, username = Sys.getenv("SLUSER"), page = NULL, per_page = 50L, ...) {
+	obj <- list()
+	obj$username = username
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/siblings", data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getListOfSiblingAccounts", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getListOfSiblingAccounts",
+		query = list(page = page, per_page = per_page), ...)
+	res
 }
 
 
-#' getSubAccountInformation 
-#' 
-#' getSubAccountInformation <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Get information about a sub account
+#'
+#' Get information about a sub account
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getSubAccountInformation (account =  , ... =  )
-#' @export 
+#' @export
 
-getSubAccountInformation <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/subaccounts ", 
+getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/subaccounts",
 		data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getSubAccountInformation", json = body, 
-		...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getSubAccountInformation", ...)
+	res
 }
 
 
-#' changeAccessKey 
-#' 
-#' changeAccessKey <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Change access key
+#'
+#' Change access key of an account
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples changeAccessKey (account =  , ... =  )
-#' @export 
+#' @export
 
-changeAccessKey <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change", 
+changeAccessKey <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username = username
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change",
 		data = obj)
-	res <- queryAPI(verb = POST, url = build_url(pathURL), source = "changeAccessKey", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "changeAccessKey",
+		json = body, ...)
+	res
 }
 
 
