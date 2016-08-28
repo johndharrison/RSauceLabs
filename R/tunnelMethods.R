@@ -1,47 +1,66 @@
 ## tunnelMethods.R - compiled by RoxygenReady, a package by @vertesy
 
 
-#' getTunnels 
-#' 
-#' getTunnels <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Get Tunnels
+#'
+#' Retrieves all running tunnels for a specific user
+#' @template account
+#' @param username SauceLabs username
+#' @template ellipsis
 #' @examples getTunnels (account =  , ... =  )
-#' @export 
+#' @export
 
-getTunnels <-function (account, ...) {
+getTunnels <-function (account, username = Sys.getenv("SLUSER"), ...) {
+	obj <- list()
+	obj$username <- username
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels", data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getTunnels", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getTunnels", ...)
+	res
 }
 
 
-#' getTunnel 
-#' 
-#' getTunnel <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' getTunnel
+#'
+#' Get information for a tunnel given its ID
+#' @template account
+#' @param username SauceLabs username
+#' @param tunnelID id of the tunnel to get more information on
+#' @template ellipsis
 #' @examples getTunnel (account =  , ... =  )
-#' @export 
+#' @export
 
-getTunnel <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}", 
+getTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
+	obj <- list()
+	obj$username <- username
+	obj$tunnel_id <- tunnelID
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
 		data = obj)
-	res <- queryAPI(verb = GET, url = build_url(pathURL), source = "getTunnel", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getTunnel", ...)
+	res
 }
 
 
-#' deleteTunnel 
-#' 
-#' deleteTunnel <- function(account, ...){
-#' @param account 
-#' @param ... 
+#' Delete Tunnel
+#'
+#' Shuts down a tunnel given its ID
+#' @template account
+#' @param username SauceLabs username
+#' @param tunnelID id of the tunnel to shutdown
+#' @template ellipsis
 #' @examples deleteTunnel (account =  , ... =  )
-#' @export 
+#' @export
 
-deleteTunnel <-function (account, ...) {
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}", 
+deleteTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
+	obj <- list()
+	obj$username <- username
+	obj$tunnel_id <- tunnelID
+	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
 		data = obj)
-	res <- queryAPI(verb = DELETE, url = build_url(pathURL), source = "deleteTunnel", json = body, ...)
+	pathURL <- parse_url(pathTemplate)
+	res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL), source = "deleteTunnel", ...)
+	res
 }
 
 
