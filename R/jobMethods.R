@@ -1,6 +1,43 @@
 ## jobMethods.R - compiled by RoxygenReady, a package by @vertesy
 
 
+#' Get Jobs
+#'
+#' List recent jobs belonging to a specific user
+#' @param account
+#' @param username
+#' @param ...
+#'
+#' @return
+#' @export
+#'
+#' @examples
+getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getFullJobs = FALSE
+                    , skipJobs = 0L, to = NULL, from = NULL, ...){
+  obj <- list()
+  obj$username <- username
+  query <- list(limit = limit,
+                full = list(NULL, "true")[[getFullJobs + 1]],
+                skip= skipJobs,
+                to = to,
+                from = from,
+                format = "json"
+  )
+  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs",
+                                 data = obj)
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getJobAssetNames",
+                  query = query, ...)
+  mainData <- rbindlist(lapply(res, function(x){
+    aD <- x[!names(x) %in% c("custom-data", "tags")]
+    aD[sapply(aD, is.null)] <- NA
+    aD
+  }
+  ), fill = TRUE)
+  tagsAndCD <- lapply(res, function(x){x[names(x) %in% c("custom-data", "tags")]})
+  list(data = mainData, tagsAndCD = tagsAndCD)
+}
+
 #' Update Job
 #'
 #' Edit an existing job
