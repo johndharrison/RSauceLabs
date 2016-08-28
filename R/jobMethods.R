@@ -13,10 +13,14 @@
 #' @param from Get jobs since the specified time (POSIXct)
 #' @template ellipsis
 #'
-#' @return
+#' @return returns a named list. "data" is the job data minus the tags and custom-data.
+#' tagsAndCD are a list of tags and custom-data for each job. If getFullJobs = FALSE then data only contains the job ids and
+#' tagsAndCD contains empty lists for each job.
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' }
 getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getFullJobs = FALSE
                     , skipJobs = 0L, to = NULL, from = NULL, ...){
   obj <- list()

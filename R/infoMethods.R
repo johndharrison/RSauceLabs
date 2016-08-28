@@ -1,6 +1,3 @@
-## infoMethods.R - compiled by RoxygenReady, a package by @vertesy
-
-
 #' Get Sauce Labs Status
 #'
 #' Get the current status of Sauce Labs services
@@ -39,9 +36,9 @@ getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
 }
 
 
-#' getAppiumEolDates
+#' Get Appium EOL dates
 #'
-#' getAppiumEolDates <- function(account, ...){
+#' Get a list of Appium end-of-life dates. Dates are displayed in Unix time.
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis

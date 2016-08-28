@@ -15,10 +15,12 @@ NULL
 #' @param user The SauceLabs user. By default an environmental variable "SLUSER" is looked for.
 #' @param password The SauceLabs password for user. By default an environmental variable "SLPASS" is looked for.
 #'
-#' @return
+#' @return returns an object of class "account".
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' }
 
 account <- function(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS")){
   acc <- authenticate(user = user, password = password)
@@ -40,6 +42,8 @@ account <- function(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS")
 #' @export
 #'
 #' @examples
+#' \dontrun{
+#' }
 queryAPI <- function(verb = GET, account, url, source, ...){
   on.exit(reset_config())
   set_config(account)
