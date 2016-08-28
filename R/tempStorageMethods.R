@@ -9,7 +9,8 @@
 #' @param file file to upload
 #' @param SLfileName name to give the file on SauceLabs. (Defaults to the current name of the file)
 #' @template ellipsis
-#' @examples uploadFile (account =  , ... =  )
+#' @example /inst/examples/docs/tempStorageMethods.R
+#' @family tempStorageMethods
 #' @export
 
 uploadFile <-function (account, username = Sys.getenv("SLUSER"), file, SLfileName = basename(file), ...) {
@@ -32,7 +33,8 @@ uploadFile <-function (account, username = Sys.getenv("SLUSER"), file, SLfileNam
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getStoredFiles (account =  , ... =  )
+#' @example /inst/examples/docs/tempStorageMethods.R
+#' @family tempStorageMethods
 #' @export
 
 getStoredFiles <-function (account, username = Sys.getenv("SLUSER"), ...) {
