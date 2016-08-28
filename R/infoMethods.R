@@ -3,7 +3,8 @@
 #' Get the current status of Sauce Labs services
 #' @template account
 #' @template ellipsis
-#' @examples getSauceLabsStatus (account =  , ... =  )
+#' @example /inst/examples/docs/infoMethods.R
+#' @family infoMethods
 #' @export
 
 getSauceLabsStatus <-function (account, ...) {
@@ -21,7 +22,8 @@ getSauceLabsStatus <-function (account, ...) {
 #' @template account
 #' @param autoAPI Accepted Values for autoAPI "all", "appium", "webdriver". Defaults to "webdriver"
 #' @template ellipsis
-#' @examples getSupportedPlatforms (account =  , ... =  )
+#' @example /inst/examples/docs/infoMethods.R
+#' @family infoMethods
 #' @export
 
 getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
@@ -42,7 +44,8 @@ getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getAppiumEolDates (account =  , ... =  )
+#' @example /inst/examples/docs/infoMethods.R
+#' @family infoMethods
 #' @export
 
 getAppiumEolDates <-function (account, ...) {
