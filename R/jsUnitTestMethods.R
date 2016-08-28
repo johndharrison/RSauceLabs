@@ -12,14 +12,15 @@
 #' @export
 
 startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms, url, framework, ...) {
-	obj <- list()
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests", data = obj)
+  obj <- list()
+  obj$username <- username
+  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests", data = obj)
 	pathURL <- parse_url(pathTemplate)
 	body <- toJSON(
 	  list(
 	    platforms = platforms,
-	    url = url,
-	    framework = framework
+	    url = unbox(url),
+	    framework = unbox(framework)
 	  )
 	)
 	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "startJsUnitTests",
@@ -41,13 +42,14 @@ startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms
 
 getJsUnitTestStatus <-function (account, username = Sys.getenv("SLUSER"), js_tests, ...) {
 	obj <- list()
+	obj$username <- username
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests/status", data = obj)
 	pathURL <- parse_url(pathTemplate)
 	body <- toJSON(
-	  list("js Test" = js_tests)
+	  list("js tests" = js_tests)
 	)
 	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "getJsUnitTestStatus",
-		jbody = body, ...)
+		body = body, ...)
 	res
 }
 
