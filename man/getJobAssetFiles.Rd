@@ -23,6 +23,44 @@ Download job assets. After a job completes, all assets created during the job ar
 The job assests will be deleted from the test page after 30 days. Thus, after 30 days all your test commands, logs, screenshots and the screencast recording will be gone. This is the reason why we strongly recommend to download your job assets if this is an information that you must keep in your records.
 }
 \examples{
-getJobAssetFiles (account =  , ... =  )
+\dontrun{
+myAcc <- account()
+myJobs <- getJobs(myAcc)
+#> myJobs$data[1,]
+#id
+#1: 4152e0a185f945bfa43e091eef1e7c30
+myJobs <- getJobs(myAcc, getFullJobs = TRUE)
+#> myJobs$data[1,.(id, browser)]
+#id      browser
+#1: 4152e0a185f945bfa43e091eef1e7c30 googlechrome
+testId <- myJobs$data[1, id]
+
+#> myJobs$data[1,.(build, passed)]
+#build passed
+#1:    24  FALSE
+
+# update this job
+updateJob(myAcc, jobID = testId, passed = TRUE, build = 20)
+myJobs <- getJobs(myAcc, getFullJobs = TRUE)
+#> myJobs$data[1,.(build, passed)]
+#build passed
+#1:    20   TRUE
+# deleteJob(myAcc, jobID = testId)
+stopJob(myAcc, jobID = testId)
+
+jobAssets <- getJobAssetNames(myAcc, jobID = testId)
+#> jobAssets[["selenium-log"]]
+#[1] "selenium-server.log"
+
+jobLog <- getJobAssetFiles(myAcc, jobID = testId)
+# deleteJobAssets(myAcc, jobID = testId)
+}
+
+}
+\seealso{
+Other jobMethods: \code{\link{deleteJobAssets}},
+  \code{\link{deleteJob}}, \code{\link{getJobAssetNames}},
+  \code{\link{getJobs}}, \code{\link{stopJob}},
+  \code{\link{updateJob}}
 }
 
