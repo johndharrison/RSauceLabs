@@ -2,14 +2,19 @@
 % Please edit documentation in R/tempStorageMethods.R
 \name{getStoredFiles}
 \alias{getStoredFiles}
-\title{getStoredFiles}
+\title{Get Stored Files}
 \usage{
-getStoredFiles(account, ...)
+getStoredFiles(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Check which files are in your temporary storage
 }
 \examples{
 getStoredFiles (account =  , ... =  )

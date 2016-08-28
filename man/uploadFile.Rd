@@ -2,14 +2,24 @@
 % Please edit documentation in R/tempStorageMethods.R
 \name{uploadFile}
 \alias{uploadFile}
-\title{uploadFile}
+\title{Upload File}
 \usage{
-uploadFile(account, ...)
+uploadFile(account, username = Sys.getenv("SLUSER"), file,
+  SLfileName = basename(file), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{file}{file to upload}
+
+\item{SLfileName}{name to give the file on SauceLabs. (Defaults to the current name of the file)}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Uploads a file to the temporary sauce storage. The storage will only retain the files for seven days.
 }
 \examples{
 uploadFile (account =  , ... =  )
