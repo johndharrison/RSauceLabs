@@ -69,20 +69,18 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
 #' @export
 
 updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NULL, tags = NULL, public = NULL, passed = NULL
-                      , build = NULL, custom_data, ...) {
+                      , build = NULL, custom_data = NULL, ...) {
   obj <- list()
   obj$job_id <- jobID
   obj$username <- username
-  body <- toJSON(
-    list(
-      name = unbox(name),
-      tags = tags,
-      public = unbox(public),
-      passed = unbox(passed),
-      build = unbox(build),
-      custom_data = custom_data
-    )
-  )
+  body <- list()
+  body$name = unbox(name)
+  body$tags = tags
+  body$public = unbox(public)
+  body$passed = unbox(passed)
+  body$build = unbox(build)
+  body$custom_data = custom_data
+  body <- toJSON(body)
   pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}", data = obj)
 	pathURL <- parse_url(pathTemplate)
 	res <- queryAPI(verb = PUT, account = account, url = build_url(pathURL), source = "updateJob"
