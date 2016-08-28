@@ -22,11 +22,11 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
   obj <- list()
   obj$username <- username
   if(!is.null(to)){
-    if(!inherits(x, "POSIXct")){stop("to should be a POSIXct object")}
+    if(!inherits(to, "POSIXct")){stop("to should be a POSIXct object")}
     to <- as.integer(to)
   }
   if(!is.null(from)){
-    if(!inherits(x, "POSIXct")){stop("from should be a POSIXct object")}
+    if(!inherits(from, "POSIXct")){stop("from should be a POSIXct object")}
     from <- as.integer(from)
   }
   query <- list(limit = limit,

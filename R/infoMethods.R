@@ -49,7 +49,6 @@ getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
 #'
 #' Get a list of Appium end-of-life dates. Dates are displayed in Unix time.
 #' @template account
-#' @param username SauceLabs username
 #' @template ellipsis
 #' @example /inst/examples/docs/infoMethods.R
 #' @family infoMethods
