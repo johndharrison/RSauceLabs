@@ -7,3 +7,4 @@
   if(any(toset)) options(op.RSauceLabs[toset])
   invisible()
 }
+utils::globalVariables("supported_backend_version") # spurious message
