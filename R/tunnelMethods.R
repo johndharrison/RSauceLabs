@@ -7,7 +7,8 @@
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getTunnels (account =  , ... =  )
+#' @example /inst/examples/docs/tunnelMethods.R
+#' @family tunnelMethods
 #' @export
 
 getTunnels <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -27,7 +28,8 @@ getTunnels <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @param username SauceLabs username
 #' @param tunnelID id of the tunnel to get more information on
 #' @template ellipsis
-#' @examples getTunnel (account =  , ... =  )
+#' @example /inst/examples/docs/tunnelMethods.R
+#' @family tunnelMethods
 #' @export
 
 getTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
@@ -49,7 +51,8 @@ getTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
 #' @param username SauceLabs username
 #' @param tunnelID id of the tunnel to shutdown
 #' @template ellipsis
-#' @examples deleteTunnel (account =  , ... =  )
+#' @example /inst/examples/docs/tunnelMethods.R
+#' @family tunnelMethods
 #' @export
 
 deleteTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
