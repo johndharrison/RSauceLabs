@@ -15,8 +15,15 @@ startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms
 	obj <- list()
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests", data = obj)
 	pathURL <- parse_url(pathTemplate)
+	body <- toJSON(
+	  list(
+	    platforms = platforms,
+	    url = url,
+	    framework = framework
+	  )
+	)
 	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "startJsUnitTests",
-		json = body, ...)
+		body = body, ...)
 	res
 }
 
@@ -36,8 +43,11 @@ getJsUnitTestStatus <-function (account, username = Sys.getenv("SLUSER"), js_tes
 	obj <- list()
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests/status", data = obj)
 	pathURL <- parse_url(pathTemplate)
+	body <- toJSON(
+	  list("js Test" = js_tests)
+	)
 	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "getJsUnitTestStatus",
-		json = body, ...)
+		jbody = body, ...)
 	res
 }
 
