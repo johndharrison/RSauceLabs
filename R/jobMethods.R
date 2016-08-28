@@ -1,6 +1,3 @@
-## jobMethods.R - compiled by RoxygenReady, a package by @vertesy
-
-
 #' Get Jobs
 #'
 #' List recent jobs belonging to a specific user
@@ -18,9 +15,8 @@
 #' tagsAndCD contains empty lists for each job.
 #' @export
 #'
-#' @examples
-#' \dontrun{
-#' }
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getFullJobs = FALSE
                     , skipJobs = 0L, to = NULL, from = NULL, ...){
   obj <- list()
@@ -68,7 +64,8 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
 #' @param build The build number tested by this test
 #' @param custom_data A  set of key-value pairs with any extra info that a user would like to add to the job. Note that the max data allowed is 64KB
 #' @template ellipsis
-#' @examples updateJob (account =  , name =  , tags =  , public =  , passed =  , build =  , custom_data =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NULL, tags = NULL, public = NULL, passed = NULL
@@ -101,7 +98,8 @@ updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NU
 #' @param username SauceLabs username
 #' @param jobID Id of the job to delete
 #' @template ellipsis
-#' @examples deleteJob (account =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 deleteJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
@@ -123,7 +121,8 @@ deleteJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
 #' @param username SauceLabs username
 #' @param jobID Id of the job to stop
 #' @template ellipsis
-#' @examples stopJob (account =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 stopJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
@@ -146,7 +145,8 @@ stopJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
 #' @param username SauceLabs username
 #' @param jobID Id of the job to stop
 #' @template ellipsis
-#' @examples getJobAssetNames (account =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 getJobAssetNames <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
@@ -171,7 +171,8 @@ getJobAssetNames <-function (account, username = Sys.getenv("SLUSER"), jobID, ..
 #' @param jobID Id of the job to get assets from
 #' @param fileName Accepted Values for fileName "selenium-server.log" "video.flv" "XXXXscreenshot.png" (where XXXX is a number between 0000 and 9999) "final_screenshot.png"
 #' @template ellipsis
-#' @examples getJobAssetFiles (account =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"), jobID, fileName = "selenium-server.log", ...) {
@@ -195,7 +196,8 @@ getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"), jobID, fi
 #' @param username SauceLabs username
 #' @param jobID Id of the job to delete assests from
 #' @template ellipsis
-#' @examples deleteJobAssets (account =  , ... =  )
+#' @example /inst/examples/docs/jobMethods.R
+#' @family jobMethods
 #' @export
 
 deleteJobAssets <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
