@@ -24,7 +24,16 @@ getJobs(account, username = Sys.getenv("SLUSER"), limit = 100L,
 
 \item{...}{Additonal function arguments - Currently unused.}
 }
+\value{
+returns a named list. "data" is the job data minus the tags and custom-data.
+tagsAndCD are a list of tags and custom-data for each job. If getFullJobs = FALSE then data only contains the job ids and
+tagsAndCD contains empty lists for each job.
+}
 \description{
 List recent jobs belonging to a specific user
+}
+\examples{
+\dontrun{
+}
 }
 

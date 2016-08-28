@@ -2,7 +2,7 @@
 % Please edit documentation in R/infoMethods.R
 \name{getAppiumEolDates}
 \alias{getAppiumEolDates}
-\title{getAppiumEolDates}
+\title{Get Appium EOL dates}
 \usage{
 getAppiumEolDates(account, ...)
 }
@@ -12,6 +12,9 @@ getAppiumEolDates(account, ...)
 \item{...}{Additonal function arguments - Currently unused.}
 
 \item{username}{SauceLabs username}
+}
+\description{
+Get a list of Appium end-of-life dates. Dates are displayed in Unix time.
 }
 \examples{
 getAppiumEolDates (account =  , ... =  )

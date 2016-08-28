@@ -11,7 +11,14 @@ account(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS"))
 
 \item{password}{The SauceLabs password for user. By default an environmental variable "SLPASS" is looked for.}
 }
+\value{
+returns an object of class "account".
+}
 \description{
 Creates a wrapper around the httr \code{\link{aunthenticate}} function. Adds an "account" class.
+}
+\examples{
+\dontrun{
+}
 }
 

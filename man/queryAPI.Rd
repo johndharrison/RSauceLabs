@@ -22,4 +22,8 @@ The contents of the response from the remote server. See \code{\link{content}} f
 \code{queryAPI} A function to send a query to SauceLabs. Intended for seleniumPipes
    internal use mainly.
 }
+\examples{
+\dontrun{
+}
+}
 
