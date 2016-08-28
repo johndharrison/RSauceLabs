@@ -2,20 +2,26 @@
 % Please edit documentation in R/jsUnitTestMethods.R
 \name{startJsUnitTests}
 \alias{startJsUnitTests}
-\title{startJsUnitTests}
+\title{Start JS Unit Tests}
 \usage{
-startJsUnitTests(account, platforms, url, framework, ...)
+startJsUnitTests(account, username = Sys.getenv("SLUSER"), platforms, url,
+  framework, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{platforms}{}
+\item{username}{SauceLabs username}
 
-\item{url}{}
+\item{platforms}{A list of platforms (see example)}
 
-\item{framework}{}
+\item{url}{should point to the page that hosts your tests}
 
-\item{...}{}
+\item{framework}{can be "qunit", "jasmine", "YUI Test", "mocha", or "custom"}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Start your JavaScript unit tests on as many browsers as you like with a single request
 }
 \examples{
 startJsUnitTests (account =  , platforms =  , url =  , framework =  , ... =  )

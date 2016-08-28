@@ -2,16 +2,21 @@
 % Please edit documentation in R/jsUnitTestMethods.R
 \name{getJsUnitTestStatus}
 \alias{getJsUnitTestStatus}
-\title{getJsUnitTestStatus}
+\title{Get JS Unit Test Status}
 \usage{
-getJsUnitTestStatus(account, js_tests, ...)
+getJsUnitTestStatus(account, username = Sys.getenv("SLUSER"), js_tests, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{js_tests}{}
+\item{username}{SauceLabs username}
 
-\item{...}{}
+\item{...}{Additonal function arguments - Currently unused.}
+
+\item{jsTests}{a vector of job ids.}
+}
+\description{
+Get the status of your JS unit tests
 }
 \examples{
 getJsUnitTestStatus (account =  , js_tests =  , ... =  )
