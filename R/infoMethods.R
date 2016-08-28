@@ -32,9 +32,16 @@ getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
   pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/info/platforms/{{automation_api}}",
 		data = obj)
 	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getSupportedPlatforms",
-		json = body, ...)
-	rbindlist(res, fill = TRUE)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getSupportedPlatforms", ...)
+	sbv <- lapply(res, function(x){unlist(x[names(x) %in% c("supported_backend_versions")], use.names = FALSE)})
+	res <- lapply(res, function(x){
+	  x[sapply(x,length) == 0] <- NA
+	  aD <- x[!names(x) %in% c("supported_backend_versions")]
+	  aD
+	})
+	res <- rbindlist(res, fill = TRUE)
+	res[, supported_backend_version:= sbv]
+	res
 }
 
 
@@ -52,8 +59,7 @@ getAppiumEolDates <-function (account, ...) {
 	obj <- list()
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/info/platforms/appium/eol", data = obj)
 	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getAppiumEolDates",
-		json = body, ...)
+	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getAppiumEolDates", ...)
 	lapply(res, function(x){
 	  if(!is.null(x)){
 	    as.POSIXct(x, origin="1970-01-01")
