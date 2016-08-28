@@ -1,13 +1,11 @@
-## accountMethods.R - compiled by RoxygenReady, a package by @vertesy
-
-
 #' Access basic account information
 #'
 #' Access basic account information
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getUser (account =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -30,7 +28,8 @@ getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @param name The name of the new user you wish to create
 #' @param email The email of the new user you wish to create
 #' @template ellipsis
-#' @examples createUser (account =  , username =  , password =  , name =  , email =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 createUser <-function (account, username = Sys.getenv("SLUSER"), newUsername, password, name, email, ...) {
@@ -56,7 +55,8 @@ createUser <-function (account, username = Sys.getenv("SLUSER"), newUsername, pa
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getUserConcurrency (account =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -78,7 +78,8 @@ getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @param from Get user from this user number. Defaults to NULL
 #' @param limit The limit on users returned. Defaults to 50L (50L is the max).
 #' @template ellipsis
-#' @examples getListOfSubAccounts (account =  , from =  , limit =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"), from = NULL, limit = 100L, ...) {
@@ -101,7 +102,8 @@ getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"), from 
 #' @param page optional defaults to NULL
 #' @param per_page results per page (max 50L). Defaults to 50L
 #' @template ellipsis
-#' @examples getListOfSiblingAccounts (account =  , page =  , per_page =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 getListOfSiblingAccounts <-function (account, username = Sys.getenv("SLUSER"), page = NULL, per_page = 50L, ...) {
@@ -121,7 +123,8 @@ getListOfSiblingAccounts <-function (account, username = Sys.getenv("SLUSER"), p
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getSubAccountInformation (account =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -141,7 +144,8 @@ getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"), .
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples changeAccessKey (account =  , ... =  )
+#' @example /inst/examples/docs/accountMethods.R
+#' @family accountMethods
 #' @export
 
 changeAccessKey <-function (account, username = Sys.getenv("SLUSER"), ...) {
