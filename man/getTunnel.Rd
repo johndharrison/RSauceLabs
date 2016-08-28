@@ -4,12 +4,19 @@
 \alias{getTunnel}
 \title{getTunnel}
 \usage{
-getTunnel(account, ...)
+getTunnel(account, username = Sys.getenv("SLUSER"), tunnelID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{tunnelID}{id of the tunnel to get more information on}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Get information for a tunnel given its ID
 }
 \examples{
 getTunnel (account =  , ... =  )

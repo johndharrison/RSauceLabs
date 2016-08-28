@@ -2,14 +2,19 @@
 % Please edit documentation in R/tunnelMethods.R
 \name{getTunnels}
 \alias{getTunnels}
-\title{getTunnels}
+\title{Get Tunnels}
 \usage{
-getTunnels(account, ...)
+getTunnels(account, username = Sys.getenv("SLUSER"), ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Retrieves all running tunnels for a specific user
 }
 \examples{
 getTunnels (account =  , ... =  )

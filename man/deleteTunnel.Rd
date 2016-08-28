@@ -2,14 +2,21 @@
 % Please edit documentation in R/tunnelMethods.R
 \name{deleteTunnel}
 \alias{deleteTunnel}
-\title{deleteTunnel}
+\title{Delete Tunnel}
 \usage{
-deleteTunnel(account, ...)
+deleteTunnel(account, username = Sys.getenv("SLUSER"), tunnelID, ...)
 }
 \arguments{
-\item{account}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
-\item{...}{}
+\item{username}{SauceLabs username}
+
+\item{tunnelID}{id of the tunnel to shutdown}
+
+\item{...}{Additonal function arguments - Currently unused.}
+}
+\description{
+Shuts down a tunnel given its ID
 }
 \examples{
 deleteTunnel (account =  , ... =  )
