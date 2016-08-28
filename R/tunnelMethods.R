@@ -1,6 +1,3 @@
-## tunnelMethods.R - compiled by RoxygenReady, a package by @vertesy
-
-
 #' Get Tunnels
 #'
 #' Retrieves all running tunnels for a specific user
