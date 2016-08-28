@@ -7,7 +7,8 @@
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getRealTimeJobActivity (account =  , ... =  )
+#' @example /inst/examples/docs/actUsageMethods.R
+#' @family actUsageMethods
 #' @export
 
 getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -27,7 +28,8 @@ getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"), ...
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getUserActivity (account =  , ... =  )
+#' @example /inst/examples/docs/actUsageMethods.R
+#' @family actUsageMethods
 #' @export
 
 getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -46,7 +48,8 @@ getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @template account
 #' @param username SauceLabs username
 #' @template ellipsis
-#' @examples getUserAccountUsage (account =  , ... =  )
+#' @example /inst/examples/docs/actUsageMethods.R
+#' @family actUsageMethods
 #' @export
 
 getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"), ...) {
