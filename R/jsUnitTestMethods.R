@@ -7,7 +7,8 @@
 #' @param url should point to the page that hosts your tests
 #' @param framework can be "qunit", "jasmine", "YUI Test", "mocha", or "custom"
 #' @template ellipsis
-#' @examples startJsUnitTests (account =  , platforms =  , url =  , framework =  , ... =  )
+#' @example /inst/examples/docs/jsUnitTestMethods.R
+#' @family jsUnitTestMethods
 #' @export
 
 startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms, url, framework, ...) {
@@ -27,7 +28,8 @@ startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms
 #' @param username SauceLabs username
 #' @param jsTests a vector of job ids.
 #' @template ellipsis
-#' @examples getJsUnitTestStatus (account =  , js_tests =  , ... =  )
+#' @example /inst/examples/docs/jsUnitTestMethods.R
+#' @family jsUnitTestMethods
 #' @export
 
 getJsUnitTestStatus <-function (account, username = Sys.getenv("SLUSER"), js_tests, ...) {
