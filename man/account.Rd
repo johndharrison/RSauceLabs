@@ -15,10 +15,11 @@ account(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS"))
 returns an object of class "account".
 }
 \description{
-Creates a wrapper around the httr \code{\link{aunthenticate}} function. Adds an "account" class.
+Creates a wrapper around the httr \code{\link{authenticate}} function. Adds an "account" class.
 }
 \examples{
 \dontrun{
+myAcc <- account()
 }
 }
 

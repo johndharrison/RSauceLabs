@@ -10,8 +10,6 @@ getAppiumEolDates(account, ...)
 \item{account}{An object of class "account". An account object see \code{\link{account}}.}
 
 \item{...}{Additonal function arguments - Currently unused.}
-
-\item{username}{SauceLabs username}
 }
 \description{
 Get a list of Appium end-of-life dates. Dates are displayed in Unix time.

@@ -11,9 +11,9 @@ getJsUnitTestStatus(account, username = Sys.getenv("SLUSER"), js_tests, ...)
 
 \item{username}{SauceLabs username}
 
-\item{...}{Additonal function arguments - Currently unused.}
+\item{js_tests}{a vector of job ids.}
 
-\item{jsTests}{a vector of job ids.}
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \description{
 Get the status of your JS unit tests

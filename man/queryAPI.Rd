@@ -9,11 +9,13 @@ queryAPI(verb = GET, account, url, source, ...)
 \arguments{
 \item{verb}{The http method to use. See \code{\link{VERB}}}
 
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
+
 \item{url}{The url of the remote server endpoint.}
 
 \item{source}{The name of the RSauceLabs function that called queryDriver.}
 
-\item{...}{}
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \value{
 The contents of the response from the remote server. See \code{\link{content}} for details.
@@ -24,6 +26,7 @@ The contents of the response from the remote server. See \code{\link{content}} f
 }
 \examples{
 \dontrun{
+# function intended for internal use
 }
 }
 

@@ -34,7 +34,7 @@ startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms
 #' Get the status of your JS unit tests
 #' @template account
 #' @param username SauceLabs username
-#' @param jsTests a vector of job ids.
+#' @param js_tests a vector of job ids.
 #' @template ellipsis
 #' @example /inst/examples/docs/jsUnitTestMethods.R
 #' @family jsUnitTestMethods
