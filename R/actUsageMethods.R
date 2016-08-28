@@ -1,6 +1,3 @@
-## actUsageMethods.R - compiled by RoxygenReady, a package by @vertesy
-
-
 #' Get Real-Time Job Activity
 #'
 #' Get information about concurrency, minutes and jobs used by the user over a specific duration (default 90 days). Concurrency is separated in mean and peak concurrency.
@@ -50,6 +47,7 @@ getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @template ellipsis
 #' @example /inst/examples/docs/actUsageMethods.R
 #' @family actUsageMethods
+#' @return The result is a breakdown summarizing the total number of jobs and VM time used, in seconds, by day.
 #' @export
 
 getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"), ...) {
@@ -58,7 +56,11 @@ getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"), ...) {
 	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/usage", data = obj)
 	pathURL <- parse_url(pathTemplate)
 	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserAccountUsage", ...)
-	res
+	res <- lapply(res$usage, function(x){
+	  data.frame(user_name = res$username, date = x[[1]], no_of_jobs = x[[2]][[1]]
+	             , vm_minutes = x[[2]][[2]], stringsAsFactors = FALSE)
+	})
+	rbindlist(res)
 }
 
 
