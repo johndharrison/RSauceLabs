@@ -4,9 +4,14 @@
 #' Get Jobs
 #'
 #' List recent jobs belonging to a specific user
-#' @param account
-#' @param username
-#' @param ...
+#' @template account
+#' @param username SauceLabs username
+#' @param limit Specifies the number of jobs to return. Default is 100 and max is 500.
+#' @param getFullJobs Get full job information, rather than just IDs. Default is FALSE.
+#' @param skipJobs Skips the specified number of jobs. Default is 0.
+#' @param to Get jobs until the specified time (POSIXct)
+#' @param from Get jobs since the specified time (POSIXct)
+#' @template ellipsis
 #'
 #' @return
 #' @export
@@ -16,6 +21,14 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
                     , skipJobs = 0L, to = NULL, from = NULL, ...){
   obj <- list()
   obj$username <- username
+  if(!is.null(to)){
+    if(!inherits(x, "POSIXct")){stop("to should be a POSIXct object")}
+    to <- as.integer(to)
+  }
+  if(!is.null(from)){
+    if(!inherits(x, "POSIXct")){stop("from should be a POSIXct object")}
+    from <- as.integer(from)
+  }
   query <- list(limit = limit,
                 full = list(NULL, "true")[[getFullJobs + 1]],
                 skip= skipJobs,

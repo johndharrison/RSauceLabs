@@ -8,7 +8,21 @@ getJobs(account, username = Sys.getenv("SLUSER"), limit = 100L,
   getFullJobs = FALSE, skipJobs = 0L, to = NULL, from = NULL, ...)
 }
 \arguments{
-\item{...}{}
+\item{account}{An object of class "account". An account object see \code{\link{account}}.}
+
+\item{username}{SauceLabs username}
+
+\item{limit}{Specifies the number of jobs to return. Default is 100 and max is 500.}
+
+\item{getFullJobs}{Get full job information, rather than just IDs. Default is FALSE.}
+
+\item{skipJobs}{Skips the specified number of jobs. Default is 0.}
+
+\item{to}{Get jobs until the specified time (POSIXct)}
+
+\item{from}{Get jobs since the specified time (POSIXct)}
+
+\item{...}{Additonal function arguments - Currently unused.}
 }
 \description{
 List recent jobs belonging to a specific user
