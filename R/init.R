@@ -73,5 +73,9 @@ queryAPI <- function(verb = GET, account, url, source, ...){
 }
 
 checkSLRes <- function(response){
-  if(identical(response$status_code, 200L)) return()
+  if(identical(response$status_code, 200L)){
+    return()
+  }else{
+    warning(paste("Response had status:"), response$status_code)
+  }
 }
