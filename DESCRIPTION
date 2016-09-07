@@ -10,3 +10,4 @@ Depends:
 Encoding: UTF-8
 License: GPL-3
 RoxygenNote: 5.0.1
+Suggests: testthat
