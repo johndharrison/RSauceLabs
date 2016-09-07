@@ -1,7 +1,6 @@
 context("account_methods_tests")
-
+SLAccount <- account()
 test_that("canCreateAccountObject", {
-  SLAccount <- account()
   expect_true(inherits(SLAccount, "account"))
 })
 
