@@ -1,8 +1,8 @@
-seleniumPipes
+RSauceLabs
 ==========================
-| Travis build status    | SauceTests  |
+| Travis build status    | Coverage |
 |:-------------:|:-------------:|
-| [![Build Status](https://travis-ci.org/johndharrison/RSauceLabs.svg?branch=master)](https://travis-ci.org/johndharrison/RSauceLabs) | |
+| [![](http://www.r-pkg.org/badges/version/RSauceLabs)](http://cran.rstudio.com/web/packages/RSauceLabs/index.html) | [![Build Status](https://travis-ci.org/johndharrison/RSauceLabs.svg?branch=master)](https://travis-ci.org/johndharrison/RSauceLabs) | [![codecov](https://codecov.io/gh/johndharrison/RSauceLabs/branch/master/graph/badge.svg)](https://codecov.io/gh/johndharrison/RSauceLabs) |
 
 
  
