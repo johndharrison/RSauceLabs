@@ -53,3 +53,17 @@ test_that("canGetListOfSiblingAccounts", {
   expect_identical(sapply(sibAccs, "[[", "username"), "testUser12367")
 }
 )
+
+test_that("canGetSubAccountInformation", {
+  subAccInfo <- getSubAccountInformation(SLAccount, "testUser12367")
+  expect_identical(subAccInfo[[1]]$username, "testUser12367")
+}
+)
+
+test_that("canChangeAccessKey", {
+  subAccInfo <- getSubAccountInformation(SLAccount, "testUser12367")
+  oldAccessKey <- subAccInfo[[1]]$access_key
+  res <- changeAccessKey(SLAccount, "testUser12367")
+  expect_false(identical(oldAccessKey, res$accessKey))
+}
+)
