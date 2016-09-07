@@ -35,7 +35,7 @@ NULL
 #' }
 
 account <- function(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS")){
-  acc <- authenticate(user = user, password = password)
+  acc <- list(request = authenticate(user = user, password = password))
   class(acc) <- c(class(acc), "account")
   acc
 }
@@ -60,7 +60,7 @@ account <- function(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS")
 #' }
 queryAPI <- function(verb = GET, account, url, source, ...){
   on.exit(reset_config())
-  set_config(account)
+  set_config(account$request)
   res <- if(!is.null(list(...)[["body"]])){
     verb(url = url, add_headers ("Content-Type" = "application/json"), ...)
   }else{
