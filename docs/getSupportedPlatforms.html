@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>getSupportedPlatforms. RSauceLabs 0.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">RSauceLabs 0.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get Supported Platforms</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='getSupportedPlatforms.html'>getSupportedPlatforms</a></span><span class="keyword">(</span><span class="symbol">account</span><span class="keyword">,</span> <span class="argument">autoAPI</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="string">"webdriver"</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>account</dt>
+      <dd>An object of class &quot;account&quot;. An account object see <code><a href='account.html'>account</a></code>.</dd>
+      <dt>autoAPI</dt>
+      <dd>Accepted Values for autoAPI &quot;all&quot;, &quot;appium&quot;, &quot;webdriver&quot;. Defaults to &quot;webdriver&quot;</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently unused.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Get a list of objects describing all the OS and browser platforms currently supported on Sauce Labs. Choose the automation API you need, bearing in mind that WebDriver and Selenium RC are each compatible with a different set of platforms.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># myAcc &lt;- account()</span>
+<span class="comment"># getSauceLabsStatus(myAcc)</span>
+<span class="comment"># #$wait_time</span>
+<span class="comment"># #[1] 1580.536</span>
+<span class="comment"># #</span>
+<span class="comment"># #$service_operational</span>
+<span class="comment"># #[1] TRUE</span>
+<span class="comment"># #</span>
+<span class="comment"># #$status_message</span>
+<span class="comment"># #[1] "Basic service status checks passed."</span>
+<span class="comment"># supportedPlatforms &lt;- getSupportedPlatforms(myAcc)</span>
+<span class="comment"># supportedPlatforms[os == "Linux" &amp; api_name == "chrome" &amp; short_version &gt; 44</span>
+<span class="comment">#                    , .(api_name, long_version)]</span>
+<span class="comment"># #api_name  long_version</span>
+<span class="comment"># #1:   chrome 45.0.2454.85.</span>
+<span class="comment"># #2:   chrome  46.0.2490.71</span>
+<span class="comment"># #3:   chrome  47.0.2526.73</span>
+<span class="comment"># #4:   chrome  48.0.2564.97</span>
+<span class="comment"># getAppiumEolDates(myAcc)</span>
+<span class="comment"># #$`1.4.0`</span>
+<span class="comment"># #[1] "2016-04-09 PDT"</span>
+<span class="comment"># #</span>
+<span class="comment"># #$`1.4.3`</span>
+<span class="comment"># #[1] "2016-04-09 PDT"</span>
+<span class="comment"># #....</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>getSupportedPlatforms</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other infoMethods: <code><a href='getAppiumEolDates.html'>getAppiumEolDates</a></code>,
+  <code><a href='getSauceLabsStatus.html'>getSauceLabsStatus</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

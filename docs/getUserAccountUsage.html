@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>getUserAccountUsage. RSauceLabs 0.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">RSauceLabs 0.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get User Account Usage</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='getUserAccountUsage.html'>getUserAccountUsage</a></span><span class="keyword">(</span><span class="symbol">account</span><span class="keyword">,</span> <span class="argument">username</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span><span class="keyword">(</span><span class="string">"SLUSER"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>account</dt>
+      <dd>An object of class &quot;account&quot;. An account object see <code><a href='account.html'>account</a></code>.</dd>
+      <dt>username</dt>
+      <dd>SauceLabs username</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently unused.</dd>
+    </dl>
+    
+    <div class="Value">
+      <h2>Value</h2>
+
+      <p><dl>
+The result is a breakdown summarizing the total number of jobs and VM time used, in seconds, by day.
+</dl></p>
+
+    </div>
+
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Access historical account usage data</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># myAcc &lt;- account()</span>
+<span class="comment"># jobActivity &lt;- getRealTimeJobActivity(myAcc)</span>
+<span class="comment"># #&gt; jobActivity$concurrency$self$allowed</span>
+<span class="comment"># #$manual</span>
+<span class="comment"># #[1] 5</span>
+<span class="comment"># #</span>
+<span class="comment"># #$mac</span>
+<span class="comment"># #[1] 5</span>
+<span class="comment"># #</span>
+<span class="comment"># #$overall</span>
+<span class="comment"># #[1] 5</span>
+<span class="comment"># #</span>
+<span class="comment"># #$real_device</span>
+<span class="comment"># #[1] 0</span>
+<span class="comment"># userActivity &lt;- getUserActivity(myAcc)</span>
+<span class="comment"># #&gt; userActivity$subaccounts$rsaucelabs</span>
+<span class="comment"># #$`in progress`</span>
+<span class="comment"># #[1] 0</span>
+<span class="comment"># #</span>
+<span class="comment"># #$all</span>
+<span class="comment"># #[1] 0</span>
+<span class="comment"># #</span>
+<span class="comment"># #$queued</span>
+<span class="comment"># #[1] 0</span>
+<span class="comment"># userAccUsage &lt;- getUserAccountUsage(myAcc)</span>
+<span class="comment"># #&gt; userAccUsage</span>
+<span class="comment"># #user_name      date no_of_jobs vm_minutes</span>
+<span class="comment"># #1: seleniumPipes 2016-8-12          2        239</span>
+<span class="comment"># #2: seleniumPipes 2016-8-13         65       6399</span>
+<span class="comment"># #3: seleniumPipes 2016-8-15         36       7235</span>
+<span class="comment"># #4: seleniumPipes 2016-8-16          7       1101</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>getUserAccountUsage</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other actUsageMethods: <code><a href='getRealTimeJobActivity.html'>getRealTimeJobActivity</a></code>,
+  <code><a href='getUserActivity.html'>getUserActivity</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

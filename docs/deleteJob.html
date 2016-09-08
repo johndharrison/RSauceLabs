@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>deleteJob. RSauceLabs 0.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">RSauceLabs 0.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Delete Job</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='deleteJob.html'>deleteJob</a></span><span class="keyword">(</span><span class="symbol">account</span><span class="keyword">,</span> <span class="argument">username</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span><span class="keyword">(</span><span class="string">"SLUSER"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">jobID</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>account</dt>
+      <dd>An object of class &quot;account&quot;. An account object see <code><a href='account.html'>account</a></code>.</dd>
+      <dt>username</dt>
+      <dd>SauceLabs username</dd>
+      <dt>jobID</dt>
+      <dd>Id of the job to delete</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently unused.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Removes the job from the system with all the linked assets</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># myAcc &lt;- account()</span>
+<span class="comment"># myJobs &lt;- getJobs(myAcc)</span>
+<span class="comment"># #&gt; myJobs$data[1,]</span>
+<span class="comment"># #id</span>
+<span class="comment"># #1: 4152e0a185f945bfa43e091eef1e7c30</span>
+<span class="comment"># myJobs &lt;- getJobs(myAcc, getFullJobs = TRUE)</span>
+<span class="comment"># #&gt; myJobs$data[1,.(id, browser)]</span>
+<span class="comment"># #id      browser</span>
+<span class="comment"># #1: 4152e0a185f945bfa43e091eef1e7c30 googlechrome</span>
+<span class="comment"># testId &lt;- myJobs$data[1, id]</span>
+<span class="comment"># </span>
+<span class="comment"># #&gt; myJobs$data[1,.(build, passed)]</span>
+<span class="comment"># #build passed</span>
+<span class="comment"># #1:    24  FALSE</span>
+<span class="comment"># </span>
+<span class="comment"># # update this job</span>
+<span class="comment"># updateJob(myAcc, jobID = testId, passed = TRUE, build = 20)</span>
+<span class="comment"># myJobs &lt;- getJobs(myAcc, getFullJobs = TRUE)</span>
+<span class="comment"># #&gt; myJobs$data[1,.(build, passed)]</span>
+<span class="comment"># #build passed</span>
+<span class="comment"># #1:    20   TRUE</span>
+<span class="comment"># # deleteJob(myAcc, jobID = testId)</span>
+<span class="comment"># stopJob(myAcc, jobID = testId)</span>
+<span class="comment"># </span>
+<span class="comment"># jobAssets &lt;- getJobAssetNames(myAcc, jobID = testId)</span>
+<span class="comment"># #&gt; jobAssets[["selenium-log"]]</span>
+<span class="comment"># #[1] "selenium-server.log"</span>
+<span class="comment"># </span>
+<span class="comment"># jobLog &lt;- getJobAssetFiles(myAcc, jobID = testId)</span>
+<span class="comment"># # deleteJobAssets(myAcc, jobID = testId)</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>deleteJob</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other jobMethods: <code><a href='deleteJobAssets.html'>deleteJobAssets</a></code>,
+  <code><a href='getJobAssetFiles.html'>getJobAssetFiles</a></code>,
+  <code><a href='getJobAssetNames.html'>getJobAssetNames</a></code>, <code><a href='getJobs.html'>getJobs</a></code>,
+  <code><a href='stopJob.html'>stopJob</a></code>, <code><a href='updateJob.html'>updateJob</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

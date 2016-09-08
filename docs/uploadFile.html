@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>uploadFile. RSauceLabs 0.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">RSauceLabs 0.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Upload File</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='uploadFile.html'>uploadFile</a></span><span class="keyword">(</span><span class="symbol">account</span><span class="keyword">,</span> <span class="argument">username</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span><span class="keyword">(</span><span class="string">"SLUSER"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">file</span><span class="keyword">,</span>
+  <span class="argument">SLfileName</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/basename'>basename</a></span><span class="keyword">(</span><span class="symbol">file</span><span class="keyword">)</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>account</dt>
+      <dd>An object of class &quot;account&quot;. An account object see <code><a href='account.html'>account</a></code>.</dd>
+      <dt>username</dt>
+      <dd>SauceLabs username</dd>
+      <dt>file</dt>
+      <dd>file to upload</dd>
+      <dt>SLfileName</dt>
+      <dd>name to give the file on SauceLabs. (Defaults to the current name of the file)</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently unused.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Uploads a file to the temporary sauce storage. The storage will only retain the files for seven days.</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># myAcc &lt;- account()</span>
+<span class="comment"># # create a temporary file</span>
+<span class="comment"># myTempFile &lt;- file.path(tempdir(), "notsecret.html")</span>
+<span class="comment"># write("SUPER SECRET STUFF", myTempFile)</span>
+<span class="comment"># # check stored files</span>
+<span class="comment"># myStoredFiles &lt;- getStoredFiles(myAcc)</span>
+<span class="comment"># </span>
+<span class="comment"># # upload new file</span>
+<span class="comment"># res &lt;- uploadFile(myAcc, file = myTempFile)</span>
+<span class="comment"># #&gt; res</span>
+<span class="comment"># #$username</span>
+<span class="comment"># #[1] "seleniumPipes"</span>
+<span class="comment"># #</span>
+<span class="comment"># #$size</span>
+<span class="comment"># #[1] 19</span>
+<span class="comment"># #</span>
+<span class="comment"># #$md5</span>
+<span class="comment"># #[1] "e459fe3803b78d64cc5c2998804909a9"</span>
+<span class="comment"># #</span>
+<span class="comment"># #$filename</span>
+<span class="comment"># #[1] "notsecret.html"</span>
+<span class="comment"># </span>
+<span class="comment"># #&gt; digest::digest(file = myTempFile, algo = "md5")</span>
+<span class="comment"># #[1] "e459fe3803b78d64cc5c2998804909a9"</span>
+<span class="comment"># </span>
+<span class="comment"># myStoredFiles &lt;- getStoredFiles(myAcc)</span>
+<span class="comment"># </span>
+<span class="comment"># #&gt; rbindlist(myStoredFiles$files)</span>
+<span class="comment"># #size      mtime           name                              md5</span>
+<span class="comment"># #1:   19 1472401537 notsecret.html e459fe3803b78d64cc5c2998804909a9</span>
+<span class="comment"># #2:   14 1472350499      testDoc.R adfc8afc373f0b3fd6f93c3891bdd11b</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>uploadFile</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other tempStorageMethods: <code><a href='getStoredFiles.html'>getStoredFiles</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>

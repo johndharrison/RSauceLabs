@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+<title>getListOfSubAccounts. RSauceLabs 0.1.2</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="author" content="">
+
+<link href="css/bootstrap.css" rel="stylesheet">
+<link href="css/bootstrap-responsive.css" rel="stylesheet">
+<link href="css/highlight.css" rel="stylesheet">
+<link href="css/staticdocs.css" rel="stylesheet">
+
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+<![endif]-->
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+<script type="text/javascript"
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+  </head>
+
+  <body>
+    <div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <a class="brand" href="index.html">RSauceLabs 0.1.2</a>
+      <div class="nav">
+        <ul class="nav">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="reference.html">Reference</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+    <div class="container">
+      <header>
+        
+      </header>
+      
+      <h1>Get a list of sub accounts</h1>
+
+<div class="row">
+  <div class="span8">
+    <h2>Usage</h2>
+    <pre><span class="functioncall"><a href='getListOfSubAccounts.html'>getListOfSubAccounts</a></span><span class="keyword">(</span><span class="symbol">account</span><span class="keyword">,</span> <span class="argument">username</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="functioncall"><a href='http://www.rdocumentation.org/packages/base/topics/Sys.getenv'>Sys.getenv</a></span><span class="keyword">(</span><span class="string">"SLUSER"</span><span class="keyword">)</span><span class="keyword">,</span> <span class="argument">from</span>&nbsp;<span class="argument">=</span>&nbsp;NULL<span class="keyword">,</span>
+  <span class="argument">limit</span>&nbsp;<span class="argument">=</span>&nbsp;<span class="number">100L</span><span class="keyword">,</span> <span class="symbol">...</span><span class="keyword">)</span></pre>
+    
+    <h2>Arguments</h2>
+    <dl>
+      <dt>account</dt>
+      <dd>An object of class &quot;account&quot;. An account object see <code><a href='account.html'>account</a></code>.</dd>
+      <dt>username</dt>
+      <dd>SauceLabs username</dd>
+      <dt>from</dt>
+      <dd>Get user from this user number. Defaults to NULL</dd>
+      <dt>limit</dt>
+      <dd>The limit on users returned. Defaults to 50L (50L is the max).</dd>
+      <dt>...</dt>
+      <dd>Additonal function arguments - Currently unused.</dd>
+    </dl>
+    
+    <div class="Description">
+      <h2>Description</h2>
+
+      <p>Get a list of sub accounts associated with a parent account</p>
+
+    </div>
+    
+    <h2 id="examples">Examples</h2>
+    <pre class="examples"><div class='input'><span class="comment">## Not run: ------------------------------------</span>
+<span class="comment"># myAcc &lt;- account()</span>
+<span class="comment"># appData &lt;- getUser(myAcc)</span>
+<span class="comment"># </span>
+<span class="comment"># createUser(myAcc, newUsername = "superstartester", password = "johndoe"</span>
+<span class="comment">#            , name = "John", email = "superstartester@example.com")</span>
+<span class="comment"># # $errors</span>
+<span class="comment"># # [1] "Subaccount capacity exhausted."</span>
+<span class="comment"># uC &lt;- getUserConcurrency(myAcc)</span>
+<span class="comment"># #&gt; rbindlist(uC$concurrency$self[c("allowed", "current")], fill = TRUE)</span>
+<span class="comment"># #manual mac overall real_device</span>
+<span class="comment"># #1:      5   5       5           0</span>
+<span class="comment"># #2:      0   0       0          NA</span>
+<span class="comment"># users &lt;- getListOfSubAccounts(myAcc)</span>
+<span class="comment"># #&gt; users$users_total</span>
+<span class="comment"># #[1] 1</span>
+<span class="comment"># siblings &lt;- getListOfSiblingAccounts(myAcc)</span>
+<span class="comment"># #&gt; getListOfSiblingAccounts(myAcc)</span>
+<span class="comment"># #list()</span>
+<span class="comment"># subAcc &lt;- getSubAccountInformation(myAcc)</span>
+<span class="comment"># </span>
+<span class="comment"># # change accesskey for a user</span>
+<span class="comment"># # changeAccessKey(myAcc, "rsaucelabs")</span>
+<span class="comment">## ---------------------------------------------</span></div></pre>
+  </div>
+  <div class="span4 sidebar">
+    <!-- <ul>
+      <li>getListOfSubAccounts</li>
+    </ul>
+    <ul>
+      
+    </ul> -->
+
+    <h2>See also</h2>
+      <p>Other accountMethods: <code><a href='changeAccessKey.html'>changeAccessKey</a></code>,
+  <code><a href='createUser.html'>createUser</a></code>,
+  <code><a href='getListOfSiblingAccounts.html'>getListOfSiblingAccounts</a></code>,
+  <code><a href='getSubAccountInformation.html'>getSubAccountInformation</a></code>,
+  <code><a href='getUserConcurrency.html'>getUserConcurrency</a></code>, <code><a href='getUser.html'>getUser</a></code></p>
+
+    
+
+
+  </div>
+</div>
+      
+      <footer>
+      <p class="pull-right"><a href="#">Back to top</a></p>
+<p>Built by <a href="https://github.com/hadley/staticdocs">staticdocs</a>. Styled with <a href="https://getbootstrap.com/2.0.4/">bootstrap</a>.</p>
+      </footer>
+    </div>
+  </body>
+</html>
