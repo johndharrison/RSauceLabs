@@ -1,3 +1,8 @@
+# RSauceLabs 0.1.3
+* Tests added for TravisCi
+* The account function now returns a list of calls 'account'
+* Add static docs pages
+
 # RSauceLabs 0.1.2
 * Add remaining functions
 * Document package functions
