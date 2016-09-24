@@ -13,19 +13,8 @@ test_that("canStartJsUnitTests", {
 }
 )
 
-test_that("canDeleteJobs", {
-  # delete Job
-  jobInfo <- getJobs(SLAccount, username = "seleniumPipes", limit = 2L, getFullJobs = TRUE)
-  expect_true(!any(jobInfo$data[, !name == "jasmine tests"]))
-  res <- lapply(jobInfo$data$id, function(x){
-    deleteJob(SLAccount, username = "seleniumPipes", jobID = x)
-  })
-  expect_true(!any(sapply(res, "[[", "status") != "success"))
-}
-)
 
-
-test_that("canGetJsUnitTestStauts", {
+test_that("canGetJsUnitTestStatusAndDelete", {
   platforms <- list(c("Windows 7", "firefox", "27"),
                     c("Linux", "googlechrome", "")
   )
@@ -47,6 +36,7 @@ test_that("canGetJsUnitTestStauts", {
                                     , js_tests = unlist(myTest, use.names = FALSE))
     chk <- jsStatus$completed
   }
+  appJobs <- getJobs(SLAccount, username = "seleniumPipes", limit = 4, getFullJobs = TRUE)
   res <- lapply(sapply(jsStatus$`js tests`, "[[", "job_id"), function(x){
     deleteJob(SLAccount, username = "seleniumPipes", jobID = x)
   })
