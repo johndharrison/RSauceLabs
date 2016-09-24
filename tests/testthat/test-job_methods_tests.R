@@ -16,8 +16,10 @@ test_that("canUpdateJob", {
   # use first job
   appJob <- jobs$data[1,]
   appJob$passed <- ifelse(is.na(appJob$passed), FALSE, appJob$passed)
+  build <- ifelse(identical(appJob$passed,"someBuild"), "someBuild1", "someBuild")
   newData <- updateJob(SLAccount, username = "seleniumPipes", jobID = appJob$id,
-                       name = "newName", passed = !appJob$passed, build = "someBuild")
+                       name = "newName", passed = !appJob$passed
+                       , build = build)
   expect_identical(appJob$passed, !newData$passed)
   expect_false(appJob$name == newData$name)
   expect_identical(newData$name, "newName")
