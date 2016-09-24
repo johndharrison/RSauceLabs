@@ -50,6 +50,8 @@ test_that("canGetJobAssetFiles", {
   # use first job
   appJob <- jobs$data[1,]
   selLog <- getJobAssetFiles(SLAccount, username = "seleniumPipes", jobID = appJob$id)
-  expect_true(grepl("COMMAND InitSession", selLog))
+  rselChk <- grepl("COMMAND InitSession", selLog)
+  jsUnitChk <- grepl("Launching a standalone server", selLog)
+  expect_true(rselChk || jsUnitChk)
 }
 )
