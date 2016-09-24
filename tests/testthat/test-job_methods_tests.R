@@ -20,7 +20,7 @@ test_that("canUpdateJob", {
   expect_identical(appJob$passed, !newData$passed)
   expect_false(appJob$name == newData$name)
   expect_identical(newData$name, "newName")
-  expect_false(appJob$build == newData$build)
+  expect_false(identical(appJob$build, newData$build))
   expect_identical(newData$build, "someBuild")
   oldData <- updateJob(SLAccount, username = "seleniumPipes", jobID = appJob$id,
                        name = appJob$name, passed = appJob$passed, build = appJob$build)
