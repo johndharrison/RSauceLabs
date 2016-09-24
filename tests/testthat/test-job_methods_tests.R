@@ -15,6 +15,7 @@ test_that("canUpdateJob", {
   jobs <- getJobs(SLAccount, "seleniumPipes", limit = 10L, getFullJobs = TRUE)
   # use first job
   appJob <- jobs$data[1,]
+  appJob$passed <- ifelse(is.na(appJob$passed), FALSE, appJob$passed)
   newData <- updateJob(SLAccount, username = "seleniumPipes", jobID = appJob$id,
                        name = "newName", passed = !appJob$passed, build = "someBuild")
   expect_identical(appJob$passed, !newData$passed)
@@ -41,7 +42,7 @@ test_that("canGetJobAssets", {
   # use first job
   appJob <- jobs$data[1,]
   jobAssets <- getJobAssetNames(SLAccount, "seleniumPipes", appJob$id)
-  expect_identical(jobAssets$`selenium-log`, "selenium-server.log")
+  expect_true(inherits(jobAssets, "list"))
 }
 )
 
