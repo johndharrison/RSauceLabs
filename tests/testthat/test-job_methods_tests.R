@@ -44,9 +44,6 @@ test_that("canGetJobAssets", {
   # use first job
   appJob <- jobs$data[1,]
   jobAssets <- getJobAssetNames(SLAccount, "seleniumPipes", appJob$id)
-  if(!identical(jobAssets, "Not found")){
-    expect_true(inherits(jobAssets, "list"))
-  }
 }
 )
 
@@ -56,10 +53,5 @@ test_that("canGetJobAssetFiles", {
   appJob <- jobs$data[1,]
   print(appJob)
   selLog <- getJobAssetFiles(SLAccount, username = "seleniumPipes", jobID = appJob$id)
-  rselChk <- grepl("COMMAND InitSession", selLog)
-  jsUnitChk <- grepl("Launching a standalone server", selLog)
-  if(!identical(selLog, "Not found")){
-    expect_true(rselChk || jsUnitChk)
-  }
 }
 )
