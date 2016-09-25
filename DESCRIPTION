@@ -1,17 +1,18 @@
 Package: RSauceLabs
 Type: Package
-Title: R Wrapper for SauceLabs REST API
-Version: 0.1.3
+Title: R Wrapper for 'SauceLabs' REST API
+Version: 0.1.4
 Authors@R: c(person("John", "Harrison", , "johndharrison0@gmail.com", role = c("aut", "cre")))
-Description: Wrapper around the Sauce Labs REST API for R.
+Description: Retrieve, update, delete job information from 'SauceLabs.com`. Poll the `SauceLabs` services
+current status and access supported platforms. Send and retrieve files from `SauceLabs` and manage tunnels associated
+with `SauceConnect`.
 Depends:
     R (>= 3.0.0),httr,jsonlite,xml2,whisker,data.table
 Suggests:
-    covr
+    covr, testthat
 Encoding: UTF-8
 License: GPL-3
 RoxygenNote: 5.0.1
-Suggests: testthat
-URL: https://github.com/johndharrison/RSauceLabs
+URL: http://johndharrison.github.io/RSauceLabs/
 URLNote: https://github.com/johndharrison/RSauceLabs
 BugReports: https://github.com/johndharrison/RSauceLabs/issues
