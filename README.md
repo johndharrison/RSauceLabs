@@ -24,7 +24,7 @@ devtools::install_github("johndharrison/RSauceLabs")
 
 ### Getting started
 
-The SauceLabs API requires an authenticated user for most API calls. RSauceLabs provides an `account` function which returns an authetication profile which other functions in the package utilise:
+The SauceLabs API requires an authenticated user for most API calls. RSauceLabs provides an `account` function which returns an authentication profile which other functions in the package utilise:
 
 ```
 SLAccount <- account()
@@ -33,7 +33,7 @@ Sauce Labs Account:
 SauceLabs username: seleniumPipes
 ```
 
-By default the function looks for the username and password for SauceLabs authentication as environmentvariables "SLUSER" and "SLPASS" respectively. Using the account credentials other functions can be called:
+By default the function looks for the username and password for SauceLabs authentication as environment variables "SLUSER" and "SLPASS" respectively. Using the account credentials other functions can be called:
 
 ```
 myJobs <- getJobs(SLAccount, limit = 2, getFullJobs = TRUE)
