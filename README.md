@@ -2,7 +2,7 @@ RSauceLabs
 ==========================
 | CRAN version       | Travis build status    | Coverage |
 |:-------------:|:-------------:|:-------------:|
-|  | [![Build Status](https://travis-ci.org/johndharrison/RSauceLabs.svg?branch=master)](https://travis-ci.org/johndharrison/RSauceLabs) | [![codecov](https://codecov.io/gh/johndharrison/RSauceLabs/branch/master/graph/badge.svg)](https://codecov.io/gh/johndharrison/RSauceLabs) |
+| [![](http://www.r-pkg.org/badges/version/RSauceLabs)](https://CRAN.R-project.org/web/packages/RSauceLabs/index.html) | [![Build Status](https://travis-ci.org/johndharrison/RSauceLabs.svg?branch=master)](https://travis-ci.org/johndharrison/RSauceLabs) | [![codecov](https://codecov.io/gh/johndharrison/RSauceLabs/branch/master/graph/badge.svg)](https://codecov.io/gh/johndharrison/RSauceLabs) |
 
 
  
