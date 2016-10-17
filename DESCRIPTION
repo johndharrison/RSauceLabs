@@ -7,7 +7,9 @@ Description: Retrieve, update, delete job information from <https://saucelabs.co
     current status and access supported platforms. Send and retrieve files from 'SauceLabs' and manage tunnels associated
     with 'SauceConnect'.
 Depends:
-    R (>= 3.0.0),httr,jsonlite,xml2,whisker,data.table
+    R (>= 3.0.0)
+Imports:
+    httr,jsonlite,xml2,whisker,data.table
 Suggests:
     covr, testthat
 Encoding: UTF-8
