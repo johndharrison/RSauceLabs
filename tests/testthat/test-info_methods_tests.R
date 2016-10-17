@@ -14,7 +14,10 @@ test_that("canGetSupportedPlatforms", {
 
 test_that("canGetAppiumEolDates", {
   eolDates <- getAppiumEolDates(SLAccount)
-  chkEDates <- sum(sapply(eolDates, function(x){!(inherits(x, "POSIXct") || is.na(x))}))
+  chkEDates <-
+    sum(vapply(eolDates,
+               function(x){!(inherits(x, "POSIXct") || is.na(x))},
+               logical(1)))
   expect_identical(chkEDates, 0L)
 }
 )

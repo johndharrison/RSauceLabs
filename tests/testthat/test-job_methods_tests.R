@@ -7,17 +7,21 @@ test_that("canGetJobsBasic", {
 })
 
 test_that("canGetJobsFull", {
-  jobs <- getJobs(SLAccount, "seleniumPipes", limit = 10L, getFullJobs = TRUE)
+  jobs <- getJobs(SLAccount, "seleniumPipes", limit = 10L,
+                  getFullJobs = TRUE)
   expect_equal(sum(c("browser", "passed") %in% names(jobs$data)), 2L)
 })
 
 test_that("canUpdateJob", {
-  jobs <- getJobs(SLAccount, "seleniumPipes", limit = 10L, getFullJobs = TRUE)
+  jobs <- getJobs(SLAccount, "seleniumPipes", limit = 10L,
+                  getFullJobs = TRUE)
   # use first job
   appJob <- jobs$data[1,]
   appJob$passed <- ifelse(is.na(appJob$passed), FALSE, appJob$passed)
-  build <- ifelse(identical(appJob$passed,"someBuild"), "someBuild1", "someBuild")
-  newData <- updateJob(SLAccount, username = "seleniumPipes", jobID = appJob$id,
+  build <- ifelse(identical(appJob$passed,"someBuild"),
+                  "someBuild1", "someBuild")
+  newData <- updateJob(SLAccount, username = "seleniumPipes",
+                       jobID = appJob$id,
                        name = "newName", passed = !appJob$passed
                        , build = build)
   expect_identical(appJob$passed, !newData$passed)
@@ -25,8 +29,10 @@ test_that("canUpdateJob", {
   expect_identical(newData$name, "newName")
   expect_false(identical(appJob$build, newData$build))
   expect_identical(newData$build, "someBuild")
-  oldData <- updateJob(SLAccount, username = "seleniumPipes", jobID = appJob$id,
-                       name = appJob$name, passed = appJob$passed, build = appJob$build)
+  oldData <- updateJob(SLAccount, username = "seleniumPipes",
+                       jobID = appJob$id,
+                       name = appJob$name, passed = appJob$passed,
+                       build = appJob$build)
 }
 )
 
@@ -52,6 +58,7 @@ test_that("canGetJobAssetFiles", {
   # use first job
   appJob <- jobs$data[1,]
   print(appJob)
-  selLog <- getJobAssetFiles(SLAccount, username = "seleniumPipes", jobID = appJob$id)
+  selLog <- getJobAssetFiles(SLAccount, username = "seleniumPipes",
+                             jobID = appJob$id)
 }
 )

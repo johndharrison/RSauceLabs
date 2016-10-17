@@ -5,11 +5,13 @@ test_that("canUpLoadFile", {
   myTempFile <- tempfile(fileext = ".html")
   write("SUPER SECRET STUFF", myTempFile)
   myStoredFiles <- getStoredFiles(SLAccount, username = "seleniumPipes")
-  expect_false(basename(myTempFile) %in% sapply(myStoredFiles$files, "[[", "name"))
+  expect_false(basename(myTempFile) %in%
+                 vapply(myStoredFiles$files, "[[", character(1), "name"))
 
   res <- uploadFile(SLAccount, file = myTempFile)
   myStoredFiles <- getStoredFiles(SLAccount, username = "seleniumPipes")
-  expect_true(basename(myTempFile) %in% sapply(myStoredFiles$files, "[[", "name"))
+  expect_true(basename(myTempFile) %in%
+                vapply(myStoredFiles$files, "[[", character(1), "name"))
 
 })
 

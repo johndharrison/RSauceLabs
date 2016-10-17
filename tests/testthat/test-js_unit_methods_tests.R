@@ -26,17 +26,22 @@ test_that("canGetJsUnitTestStatusAndDelete", {
 
   chk <- FALSE
   jsStatus <- getJsUnitTestStatus(SLAccount, username = "seleniumPipes"
-                             , js_tests = unlist(myTest, use.names = FALSE))
+                                  , js_tests = unlist(myTest,
+                                                      use.names = FALSE)
+  )
   expect_true(is.logical(jsStatus$completed))
 
   # delete jobs
   while(!chk){
     Sys.sleep(20)
     jsStatus <- getJsUnitTestStatus(SLAccount, username = "seleniumPipes"
-                                    , js_tests = unlist(myTest, use.names = FALSE))
+                                    , js_tests = unlist(myTest,
+                                                        use.names = FALSE)
+    )
     chk <- jsStatus$completed
   }
-  appJobs <- getJobs(SLAccount, username = "seleniumPipes", limit = 4, getFullJobs = TRUE)
+  appJobs <- getJobs(SLAccount, username = "seleniumPipes", limit = 4,
+                     getFullJobs = TRUE)
   res <- lapply(sapply(jsStatus$`js tests`, "[[", "job_id"), function(x){
     deleteJob(SLAccount, username = "seleniumPipes", jobID = x)
   })

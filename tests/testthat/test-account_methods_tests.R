@@ -5,8 +5,8 @@ test_that("canCreateAccountObject", {
 })
 
 test_that("canGetUser", {
- userInfo <- getUser(SLAccount)
- expect_identical(userInfo$username, "seleniumPipes")
+  userInfo <- getUser(SLAccount)
+  expect_identical(userInfo$username, "seleniumPipes")
 }
 )
 
@@ -20,10 +20,15 @@ test_that("canGetSubUser", {
 test_that("checkCanCreateSubAccount", {
   expect_warning(
     newUser <- createUser(SLAccount, username = "seleniumPipes",
-                        newUsername = "testUser12367", password = "testPass",
-                        name = "aUser", email = "testUser@example.com")
+                          newUsername = "testUser12367",
+                          password = "testPass",
+                          name = "aUser", email = "testUser@example.com")
   )
-  expect_identical(newUser$error, "Sorry, the email you've provided is already associated with another account. Please use another email address.")
+  expect_identical(newUser$error,
+                   paste("Sorry, the email you've provided is already" ,
+                         "associated with another account. Please use" ,
+                         "another email address.")
+  )
 }
 
 )
@@ -37,14 +42,16 @@ test_that("canGetUserConcurrency", {
 test_that("canGetSubUserConcurrency", {
   userConcur <- getUserConcurrency(SLAccount, username = "rsaucelabs")
   expect_identical(userConcur$concurrency$self$username, "rsaucelabs")
-  expect_identical(userConcur$concurrency$ancestor$username, "seleniumPipes")
+  expect_identical(userConcur$concurrency$ancestor$username,
+                   "seleniumPipes")
 }
 )
 
 test_that("canGetListOfSubAccounts", {
   userAccs <- getListOfSubAccounts(SLAccount, username = "seleniumPipes")
   expect_equal(userAccs$users_total, 2L)
-  expect_identical(sapply(userAccs$users, "[[", "username"), c("rsaucelabs", "testUser12367"))
+  expect_identical(vapply(userAccs$users, "[[", character(1), "username"),
+                   c("rsaucelabs", "testUser12367"))
 }
 )
 
