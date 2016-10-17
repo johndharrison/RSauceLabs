@@ -82,12 +82,12 @@ updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID,
   obj$job_id <- jobID
   obj$username <- username
   body <- list()
-  body$name = unbox(name)
-  body$tags = tags
-  body$public = unbox(public)
-  body$passed = unbox(passed)
-  body$build = unbox(build)
-  body$`custom-data` = custom_data
+  body$name <- unbox(name)
+  body$tags <- tags
+  body$public <- unbox(public)
+  body$passed <- unbox(passed)
+  body$build <- unbox(build)
+  body$`custom-data` <- custom_data
   body <- toJSON(body)
   pathTemplate <-
     whisker.render(
@@ -209,7 +209,8 @@ getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"),
   obj$file_name <- fileName
   pathTemplate <-
     whisker.render(
-      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets/{{file_name}}",
+      paste0("https://saucelabs.com/rest/v1/{{username}}/jobs/",
+             "{{job_id}}/assets/{{file_name}}"),
       data = obj
     )
   pathURL <- parse_url(pathTemplate)

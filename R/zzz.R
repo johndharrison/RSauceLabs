@@ -1,4 +1,5 @@
-.onLoad <- function(libname = find.package("RSauceLabs"), pkgname = "RSauceLabs"){
+.onLoad <- function(libname = find.package("RSauceLabs"),
+                    pkgname = "RSauceLabs"){
   op <- options()
   op.RSauceLabs <- list(
 

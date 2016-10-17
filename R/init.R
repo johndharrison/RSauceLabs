@@ -34,7 +34,8 @@ NULL
 #' myAcc <- account()
 #' }
 
-account <- function(user = Sys.getenv("SLUSER"), password = Sys.getenv("SLPASS")){
+account <- function(user = Sys.getenv("SLUSER"),
+                    password = Sys.getenv("SLPASS")){
   acc <- list(request = authenticate(user = user, password = password))
   class(acc) <- c(class(acc), "account")
   acc

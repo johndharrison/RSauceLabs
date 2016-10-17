@@ -40,7 +40,7 @@ getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
 createUser <-function (account, username = Sys.getenv("SLUSER"),
                        newUsername, password, name, email, ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   body <- toJSON(list(
     username = newUsername,
     password = password,
@@ -73,7 +73,7 @@ createUser <-function (account, username = Sys.getenv("SLUSER"),
 getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"),
                                ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
@@ -101,7 +101,7 @@ getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"),
 getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"),
                                  from = NULL, limit = 100L, ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts",
@@ -131,7 +131,7 @@ getListOfSiblingAccounts <-function (account,
                                      username = Sys.getenv("SLUSER"),
                                      page = NULL, per_page = 50L, ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1.1/users/{{username}}/siblings",
@@ -158,7 +158,7 @@ getListOfSiblingAccounts <-function (account,
 getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"),
                                      ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1/users/{{username}}/subaccounts",
@@ -183,7 +183,7 @@ getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"),
 
 changeAccessKey <-function (account, username = Sys.getenv("SLUSER"), ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change",

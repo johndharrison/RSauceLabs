@@ -51,21 +51,25 @@ appMethods <- rbindlist(appMethods, fill = TRUE)
 setnames(appMethods, tocamel(tolower(names(appMethods))))
 
 orgVars <- list(":username", ":automation_api", ":job_id",
-     ":file_name", ":tunnel_id", ":your_file_name", "^/rest/v1/", "https://saucelabs.com/rest/v1/")
+     ":file_name", ":tunnel_id", ":your_file_name", "^/rest/v1/",
+     "https://saucelabs.com/rest/v1/")
 newVars <- list("{{username}}", "{{automation_api}}", "{{job_id}}",
                    "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}", "", "")
 temp <- appMethods$url
 for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp)
 appMethods[, version := ifelse(grepl("/rest/v1.1/", temp), "v1.1", "v1")]
 temp <- gsub("^(info/platforms/\\{\\{automation_api\\}\\}).*", "\\1", temp)
-temp <- gsub("^(\\{\\{username\\}\\}/jobs/\\{\\{job_id\\}\\}/assets/\\{\\{file_name\\}\\}).*", "\\1", temp)
+temp <- gsub(
+  "^(\\{\\{username\\}\\}/jobs/\\{\\{job_id\\}\\}/assets/\\{\\{file_name\\}\\}).*",
+  "\\1", temp)
 appMethods$url <- gsub("https://saucelabs.com/rest/v1.1/", "", temp)
 
 
 appMethods[, args := sapply(requestFields, function(x){
   rF <- sub("(.*):(.*)", "\\1", x)
   rF <- sub("-", "_", rF)
-  rF <- paste0(paste(trimws(sub("(.*)\\(.*", "\\1", rF)), collapse =", "), ", ...")
+  rF <- paste0(paste(trimws(sub("(.*)\\(.*", "\\1", rF)), collapse =", "),
+               ", ...")
   sub("^([^,].*)", ", \\1", rF)
 })]
 appMethods[, method := tocamel(tolower(method))]
@@ -75,9 +79,12 @@ funcTemp <- list(
 {{method}} <- function(account{{{args}}}){
   # {{description}}
   obj <- list()
-  pathTemplate <- whisker.render(\"https://saucelabs.com/rest/{{version}}/{{url}}\", data = obj)
+  pathTemplate <-
+whisker.render(\"https://saucelabs.com/rest/{{version}}/{{url}}\",
+data = obj)
   pathURL <- parse_url(pathTemplate)
-  res <- queryAPI(verb = {{methodType}}, account = account, url = build_url(pathURL), source = \"{{method}}\", json = body,...)
+  res <- queryAPI(verb = {{methodType}}, account = account,
+url = build_url(pathURL), source = \"{{method}}\", json = body,...)
   res
 }
 ")
@@ -90,7 +97,8 @@ appMethods[, RSLFuncs := sapply(rowSplit(appMethods), function(x){
 appMethods[, RSLFuncs := gsub("js tests, js tests", "js_tests", RSLFuncs)]
 
 # write templates to file based on group
-appMethods[,write(file = paste0("R/", group, ".R"), paste(RSLFuncs, collapse = "")), by = group]
+appMethods[,write(file = paste0("R/", group, ".R"),
+                  paste(RSLFuncs, collapse = "")), by = group]
 
 # create roxygen skeletons for files:
 lapply(appMethods[, unique(paste0("R/", group, ".R"))], function(x){

@@ -11,7 +11,7 @@
 getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"),
                                    ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
@@ -36,7 +36,7 @@ getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"),
 
 getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
   obj <- list()
-  obj$username = username
+  obj$username <- username
   pathTemplate <-
     whisker.render(
       "https://saucelabs.com/rest/v1/{{username}}/activity",
