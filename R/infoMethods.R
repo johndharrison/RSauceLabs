@@ -49,7 +49,7 @@ getSupportedPlatforms <-function (account, autoAPI = "webdriver", ...) {
                     use.names = FALSE)
            })
   res <- lapply(res, function(x){
-    x[vapply(x, length, integer(0)) == 0] <- NA
+    x[vapply(x, length, integer(1)) == 0] <- NA
     aD <- x[!names(x) %in% c("supported_backend_versions")]
     aD
   })

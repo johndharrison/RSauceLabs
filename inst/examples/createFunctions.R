@@ -8,13 +8,20 @@ library(rapportools)
 library(RoxygenReady) #https://github.com/vertesy/roxygenready devtools::install_github(repo = "vertesy/RoxygenReady/RoxygenReady", ref = "cdf661e79f3a75405f4e30a3c2f8e6c39158d67f")
 library(whisker)
 slURL <- list(
-  accountMethods = "https://wiki.saucelabs.com/display/DOCS/Account+Methods",
-  infoMethods = "https://wiki.saucelabs.com/display/DOCS/Information+Methods",
-  jobMethods = "https://wiki.saucelabs.com/display/DOCS/Job+Methods",
-  actUsageMethods = "https://wiki.saucelabs.com/display/DOCS/Test+Activity+and+Usage+Methods",
-  tunnelMethods = "https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods",
-  tempStorageMethods = "https://wiki.saucelabs.com/display/DOCS/Temporary+Storage+Methods",
-  jsUnitTestMethods = "https://wiki.saucelabs.com/display/DOCS/JavaScript+Unit+Testing+Methods"
+  accountMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Account+Methods",
+  infoMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Information+Methods",
+  jobMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Job+Methods",
+  actUsageMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Test+Activity+and+Usage+Methods",
+  tunnelMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Tunnel+Methods",
+  tempStorageMethods =
+    "https://wiki.saucelabs.com/display/DOCS/Temporary+Storage+Methods",
+  jsUnitTestMethods =
+    "https://wiki.saucelabs.com/display/DOCS/JavaScript+Unit+Testing+Methods"
 )
 
 readSLUrl <- function(appURL){
