@@ -11,21 +11,27 @@
 #' @family jsUnitTestMethods
 #' @export
 
-startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms, url, framework, ...) {
+startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"),
+                             platforms, url, framework, ...) {
   obj <- list()
   obj$username <- username
-  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	body <- toJSON(
-	  list(
-	    platforms = platforms,
-	    url = unbox(url),
-	    framework = unbox(framework)
-	  )
-	)
-	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "startJsUnitTests",
-		body = body, ...)
-	res
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/js-tests",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  body <- toJSON(
+    list(
+      platforms = platforms,
+      url = unbox(url),
+      framework = unbox(framework)
+    )
+  )
+  res <- queryAPI(verb = POST, account = account, url = build_url(pathURL),
+                  source = "startJsUnitTests",
+                  body = body, ...)
+  res
 }
 
 
@@ -40,17 +46,23 @@ startJsUnitTests <-function (account, username = Sys.getenv("SLUSER"), platforms
 #' @family jsUnitTestMethods
 #' @export
 
-getJsUnitTestStatus <-function (account, username = Sys.getenv("SLUSER"), js_tests, ...) {
-	obj <- list()
-	obj$username <- username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/js-tests/status", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	body <- toJSON(
-	  list("js tests" = js_tests)
-	)
-	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "getJsUnitTestStatus",
-		body = body, ...)
-	res
+getJsUnitTestStatus <-function (account, username = Sys.getenv("SLUSER"),
+                                js_tests, ...) {
+  obj <- list()
+  obj$username <- username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/js-tests/status",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  body <- toJSON(
+    list("js tests" = js_tests)
+  )
+  res <- queryAPI(verb = POST, account = account, url = build_url(pathURL),
+                  source = "getJsUnitTestStatus",
+                  body = body, ...)
+  res
 }
 
 

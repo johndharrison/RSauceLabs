@@ -13,17 +13,22 @@
 #' @family tempStorageMethods
 #' @export
 
-uploadFile <-function (account, username = Sys.getenv("SLUSER"), file, SLfileName = basename(file), ...) {
+uploadFile <-function (account, username = Sys.getenv("SLUSER"), file,
+                       SLfileName = basename(file), ...) {
   obj <- list()
   obj$username <- username
   obj$your_file_name <- SLfileName
-  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/storage/{{username}}/{{your_file_name}}",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	body <- upload_file(file)
-	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "uploadFile",
-		body = body, ...)
-	res
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/storage/{{username}}/{{your_file_name}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  body <- upload_file(file)
+  res <- queryAPI(verb = POST, account = account, url = build_url(pathURL),
+                  source = "uploadFile",
+                  body = body, ...)
+  res
 }
 
 
@@ -38,12 +43,17 @@ uploadFile <-function (account, username = Sys.getenv("SLUSER"), file, SLfileNam
 #' @export
 
 getStoredFiles <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username <- username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/storage/{{username}}", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getStoredFiles", ...)
-	res
+  obj <- list()
+  obj$username <- username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/storage/{{username}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getStoredFiles", ...)
+  res
 }
 
 

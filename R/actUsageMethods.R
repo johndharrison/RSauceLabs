@@ -8,14 +8,19 @@
 #' @family actUsageMethods
 #' @export
 
-getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getRealTimeJobActivity", ...)
-	res
+getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"),
+                                   ...) {
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getRealTimeJobActivity", ...)
+  res
 }
 
 
@@ -30,12 +35,17 @@ getRealTimeJobActivity <-function (account, username = Sys.getenv("SLUSER"), ...
 #' @export
 
 getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/activity", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserActivity", ...)
-	res
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/activity",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getUserActivity", ...)
+  res
 }
 
 
@@ -50,17 +60,24 @@ getUserActivity <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @return The result is a breakdown summarizing the total number of jobs and VM time used, in seconds, by day.
 #' @export
 
-getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/usage", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserAccountUsage", ...)
-	res <- lapply(res$usage, function(x){
-	  data.frame(user_name = res$username, date = x[[1]], no_of_jobs = x[[2]][[1]]
-	             , vm_minutes = x[[2]][[2]], stringsAsFactors = FALSE)
-	})
-	rbindlist(res)
+getUserAccountUsage <-function (account, username = Sys.getenv("SLUSER"),
+                                ...) {
+  obj <- list()
+  obj$username <- username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}/usage",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getUserAccountUsage", ...)
+  res <- lapply(res$usage, function(x){
+    data.frame(user_name = res$username, date = x[[1]],
+               no_of_jobs = x[[2]][[1]],
+               vm_minutes = x[[2]][[2]], stringsAsFactors = FALSE)
+  })
+  rbindlist(res)
 }
 
 

@@ -17,8 +17,9 @@
 #'
 #' @example /inst/examples/docs/jobMethods.R
 #' @family jobMethods
-getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getFullJobs = FALSE
-                    , skipJobs = 0L, to = NULL, from = NULL, ...){
+getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L,
+                    getFullJobs = FALSE,
+                    skipJobs = 0L, to = NULL, from = NULL, ...){
   obj <- list()
   obj$username <- username
   if(!is.null(to)){
@@ -36,10 +37,14 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
                 from = from,
                 format = "json"
   )
-  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs",
-                                 data = obj)
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs",
+      data = obj
+    )
   pathURL <- parse_url(pathTemplate)
-  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getJobAssetNames",
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getJobAssetNames",
                   query = query, ...)
   mainData <- rbindlist(lapply(res, function(x){
     aD <- x[!names(x) %in% c("custom-data", "tags")]
@@ -47,7 +52,9 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
     aD
   }
   ), fill = TRUE)
-  tagsAndCD <- lapply(res, function(x){x[names(x) %in% c("custom-data", "tags")]})
+  tagsAndCD <-
+    lapply(res,
+           function(x){x[names(x) %in% c("custom-data", "tags")]})
   list(data = mainData, tagsAndCD = tagsAndCD)
 }
 
@@ -68,7 +75,8 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L, getF
 #' @family jobMethods
 #' @export
 
-updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NULL, tags = NULL, public = NULL, passed = NULL
+updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID,
+                      name = NULL, tags = NULL, public = NULL, passed = NULL
                       , build = NULL, custom_data = NULL, ...) {
   obj <- list()
   obj$job_id <- jobID
@@ -81,11 +89,16 @@ updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NU
   body$build = unbox(build)
   body$`custom-data` = custom_data
   body <- toJSON(body)
-  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = PUT, account = account, url = build_url(pathURL), source = "updateJob"
-	                , body = body, ...)
-	res
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = PUT, account = account, url = build_url(pathURL),
+                  source = "updateJob"
+                  , body = body, ...)
+  res
 }
 
 
@@ -100,15 +113,21 @@ updateJob <-function (account, username = Sys.getenv("SLUSER"), jobID, name = NU
 #' @family jobMethods
 #' @export
 
-deleteJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
-	obj <- list()
-	obj$job_id <- jobID
-	obj$username <- username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL), source = "deleteJob",
-		json = body, ...)
-	res
+deleteJob <-function (account, username = Sys.getenv("SLUSER"),
+                      jobID, ...) {
+  obj <- list()
+  obj$job_id <- jobID
+  obj$username <- username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL),
+                  source = "deleteJob",
+                  json = body, ...)
+  res
 }
 
 
@@ -124,15 +143,19 @@ deleteJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
 #' @export
 
 stopJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
-	obj <- list()
-	obj$username <- username
-	obj$job_id <- jobID
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/stop",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = PUT, account = account, url = build_url(pathURL), source = "stopJob", json = body,
-		...)
-	res
+  obj <- list()
+  obj$username <- username
+  obj$job_id <- jobID
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/stop",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = PUT, account = account, url = build_url(pathURL),
+                  source = "stopJob", json = body,
+                  ...)
+  res
 }
 
 
@@ -147,16 +170,21 @@ stopJob <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
 #' @family jobMethods
 #' @export
 
-getJobAssetNames <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
-	obj <- list()
-	obj$username <- username
-	obj$job_id <- jobID
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getJobAssetNames",
-		json = body, ...)
-	res
+getJobAssetNames <-function (account, username = Sys.getenv("SLUSER"),
+                             jobID, ...) {
+  obj <- list()
+  obj$username <- username
+  obj$job_id <- jobID
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getJobAssetNames",
+                  json = body, ...)
+  res
 }
 
 
@@ -173,17 +201,22 @@ getJobAssetNames <-function (account, username = Sys.getenv("SLUSER"), jobID, ..
 #' @family jobMethods
 #' @export
 
-getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"), jobID, fileName = "selenium-server.log", ...) {
-	obj <- list()
-	obj$username <- username
-	obj$job_id <- jobID
-	obj$file_name <- fileName
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets/{{file_name}}",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getJobAssetFiles",
-		json = body, ...)
-	res
+getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"),
+                             jobID, fileName = "selenium-server.log", ...) {
+  obj <- list()
+  obj$username <- username
+  obj$job_id <- jobID
+  obj$file_name <- fileName
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets/{{file_name}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getJobAssetFiles",
+                  json = body, ...)
+  res
 }
 
 
@@ -198,16 +231,21 @@ getJobAssetFiles <-function (account, username = Sys.getenv("SLUSER"), jobID, fi
 #' @family jobMethods
 #' @export
 
-deleteJobAssets <-function (account, username = Sys.getenv("SLUSER"), jobID, ...) {
-	obj <- list()
-	obj$username <- username
-	obj$job_id <- jobID
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL), source = "deleteJobAssets",
-		json = body, ...)
-	res
+deleteJobAssets <-function (account, username = Sys.getenv("SLUSER"),
+                            jobID, ...) {
+  obj <- list()
+  obj$username <- username
+  obj$job_id <- jobID
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/jobs/{{job_id}}/assets",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL),
+                  source = "deleteJobAssets",
+                  json = body, ...)
+  res
 }
 
 

@@ -11,9 +11,14 @@
 getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
   obj <- list()
   obj$username <- username
-  pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}",
+      data = obj
+    )
   pathURL <- parse_url(pathTemplate)
-  res <- queryAPI(verb = GET, url = build_url(pathURL), account = account, source = "getUser", body = NULL, ...)
+  res <- queryAPI(verb = GET, url = build_url(pathURL), account = account,
+                  source = "getUser", body = NULL, ...)
   res
 }
 
@@ -32,20 +37,26 @@ getUser <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @family accountMethods
 #' @export
 
-createUser <-function (account, username = Sys.getenv("SLUSER"), newUsername, password, name, email, ...) {
-	obj <- list()
-	obj$username = username
-	body <- toJSON(list(
-	  username = newUsername,
-	  password = password,
-	  name = name,
-	  email = email
-	), auto_unbox = TRUE)
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "createUser",
-		body = body, ...)
-	res
+createUser <-function (account, username = Sys.getenv("SLUSER"),
+                       newUsername, password, name, email, ...) {
+  obj <- list()
+  obj$username = username
+  body <- toJSON(list(
+    username = newUsername,
+    password = password,
+    name = name,
+    email = email
+  ), auto_unbox = TRUE)
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = POST, account = account, url = build_url(pathURL),
+                  source = "createUser",
+                  body = body, ...)
+  res
 }
 
 
@@ -59,14 +70,19 @@ createUser <-function (account, username = Sys.getenv("SLUSER"), newUsername, pa
 #' @family accountMethods
 #' @export
 
-getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getUserConcurrency", ...)
-	res
+getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"),
+                               ...) {
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1.1/users/{{username}}/concurrency",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getUserConcurrency", ...)
+  res
 }
 
 
@@ -82,15 +98,20 @@ getUserConcurrency <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @family accountMethods
 #' @export
 
-getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"), from = NULL, limit = 100L, ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getListOfSubAccounts",
-		query = list(from = from, limit = limit), ...)
-	res
+getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"),
+                                 from = NULL, limit = 100L, ...) {
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}/list-subaccounts",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getListOfSubAccounts",
+                  query = list(from = from, limit = limit), ...)
+  res
 }
 
 
@@ -106,14 +127,21 @@ getListOfSubAccounts <-function (account, username = Sys.getenv("SLUSER"), from 
 #' @family accountMethods
 #' @export
 
-getListOfSiblingAccounts <-function (account, username = Sys.getenv("SLUSER"), page = NULL, per_page = 50L, ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1.1/users/{{username}}/siblings", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getListOfSiblingAccounts",
-		query = list(page = page, per_page = per_page), ...)
-	res
+getListOfSiblingAccounts <-function (account,
+                                     username = Sys.getenv("SLUSER"),
+                                     page = NULL, per_page = 50L, ...) {
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1.1/users/{{username}}/siblings",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getListOfSiblingAccounts",
+                  query = list(page = page, per_page = per_page), ...)
+  res
 }
 
 
@@ -127,14 +155,19 @@ getListOfSiblingAccounts <-function (account, username = Sys.getenv("SLUSER"), p
 #' @family accountMethods
 #' @export
 
-getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/subaccounts",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getSubAccountInformation", ...)
-	res
+getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"),
+                                     ...) {
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}/subaccounts",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getSubAccountInformation", ...)
+  res
 }
 
 
@@ -149,14 +182,18 @@ getSubAccountInformation <-function (account, username = Sys.getenv("SLUSER"), .
 #' @export
 
 changeAccessKey <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username = username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = POST, account = account, url = build_url(pathURL), source = "changeAccessKey",
-		json = body, ...)
-	res
+  obj <- list()
+  obj$username = username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/users/{{username}}/accesskey/change",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = POST, account = account, url = build_url(pathURL),
+                  source = "changeAccessKey",
+                  json = body, ...)
+  res
 }
 
 

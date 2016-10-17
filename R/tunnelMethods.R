@@ -9,12 +9,17 @@
 #' @export
 
 getTunnels <-function (account, username = Sys.getenv("SLUSER"), ...) {
-	obj <- list()
-	obj$username <- username
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels", data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getTunnels", ...)
-	res
+  obj <- list()
+  obj$username <- username
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/tunnels",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getTunnels", ...)
+  res
 }
 
 
@@ -29,15 +34,20 @@ getTunnels <-function (account, username = Sys.getenv("SLUSER"), ...) {
 #' @family tunnelMethods
 #' @export
 
-getTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
-	obj <- list()
-	obj$username <- username
-	obj$tunnel_id <- tunnelID
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = GET, account = account, url = build_url(pathURL), source = "getTunnel", ...)
-	res
+getTunnel <-function (account, username = Sys.getenv("SLUSER"),
+                      tunnelID, ...) {
+  obj <- list()
+  obj$username <- username
+  obj$tunnel_id <- tunnelID
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = GET, account = account, url = build_url(pathURL),
+                  source = "getTunnel", ...)
+  res
 }
 
 
@@ -52,15 +62,20 @@ getTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
 #' @family tunnelMethods
 #' @export
 
-deleteTunnel <-function (account, username = Sys.getenv("SLUSER"), tunnelID, ...) {
-	obj <- list()
-	obj$username <- username
-	obj$tunnel_id <- tunnelID
-	pathTemplate <- whisker.render("https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
-		data = obj)
-	pathURL <- parse_url(pathTemplate)
-	res <- queryAPI(verb = DELETE, account = account, url = build_url(pathURL), source = "deleteTunnel", ...)
-	res
+deleteTunnel <-function (account, username = Sys.getenv("SLUSER"),
+                         tunnelID, ...) {
+  obj <- list()
+  obj$username <- username
+  obj$tunnel_id <- tunnelID
+  pathTemplate <-
+    whisker.render(
+      "https://saucelabs.com/rest/v1/{{username}}/tunnels/{{tunnel_id}}",
+      data = obj
+    )
+  pathURL <- parse_url(pathTemplate)
+  res <- queryAPI(verb = DELETE, account = account,
+                  url = build_url(pathURL), source = "deleteTunnel", ...)
+  res
 }
 
 
