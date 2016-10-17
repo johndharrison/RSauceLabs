@@ -1,3 +1,7 @@
+# RSauceLabs 0.1.7
+* Tidy up code base
+* Move all Depends to Imports
+
 # RSauceLabs 0.1.3
 * Tests added for TravisCi
 * The account function now returns a list of calls 'account'

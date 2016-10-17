@@ -1,7 +1,7 @@
 Package: RSauceLabs
 Type: Package
 Title: R Wrapper for 'SauceLabs' REST API
-Version: 0.1.6
+Version: 0.1.7
 Authors@R: c(person("John", "Harrison", , "johndharrison0@gmail.com", role = c("aut", "cre")))
 Description: Retrieve, update, delete job information from <https://saucelabs.com/>. Poll the 'SauceLabs' services
     current status and access supported platforms. Send and retrieve files from 'SauceLabs' and manage tunnels associated
