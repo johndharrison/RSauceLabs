@@ -48,7 +48,7 @@ getJobs <- function(account, username = Sys.getenv("SLUSER"), limit = 100L,
                   query = query, ...)
   mainData <- rbindlist(lapply(res, function(x){
     aD <- x[!names(x) %in% c("custom-data", "tags")]
-    aD[sapply(aD, is.null)] <- NA
+    aD[vapply(aD, is.null, logical(1))] <- NA
     aD
   }
   ), fill = TRUE)

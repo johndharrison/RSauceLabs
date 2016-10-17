@@ -42,10 +42,12 @@ test_that("canGetJsUnitTestStatusAndDelete", {
   }
   appJobs <- getJobs(SLAccount, username = "seleniumPipes", limit = 4,
                      getFullJobs = TRUE)
-  res <- lapply(sapply(jsStatus$`js tests`, "[[", "job_id"), function(x){
-    deleteJob(SLAccount, username = "seleniumPipes", jobID = x)
-  })
-  expect_true(!any(sapply(res, "[[", "status") != "success"))
+  res <- lapply(vapply(jsStatus$`js tests`, "[[", character(1), "job_id"),
+                function(x){
+                  deleteJob(SLAccount, username = "seleniumPipes",
+                            jobID = x)
+                })
+  expect_true(!any(vapply(res, "[[", character(1),  "status") != "success"))
 
 }
 )

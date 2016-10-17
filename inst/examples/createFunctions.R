@@ -51,10 +51,10 @@ appMethods <- rbindlist(appMethods, fill = TRUE)
 setnames(appMethods, tocamel(tolower(names(appMethods))))
 
 orgVars <- list(":username", ":automation_api", ":job_id",
-     ":file_name", ":tunnel_id", ":your_file_name", "^/rest/v1/",
-     "https://saucelabs.com/rest/v1/")
+                ":file_name", ":tunnel_id", ":your_file_name", "^/rest/v1/",
+                "https://saucelabs.com/rest/v1/")
 newVars <- list("{{username}}", "{{automation_api}}", "{{job_id}}",
-                   "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}", "", "")
+                "{{file_name}}", "{{tunnel_id}}", "{{your_file_name}}", "", "")
 temp <- appMethods$url
 for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp)
 appMethods[, version := ifelse(grepl("/rest/v1.1/", temp), "v1.1", "v1")]
@@ -65,13 +65,13 @@ temp <- gsub(
 appMethods$url <- gsub("https://saucelabs.com/rest/v1.1/", "", temp)
 
 
-appMethods[, args := sapply(requestFields, function(x){
+appMethods[, args := vapply(requestFields, function(x){
   rF <- sub("(.*):(.*)", "\\1", x)
   rF <- sub("-", "_", rF)
   rF <- paste0(paste(trimws(sub("(.*)\\(.*", "\\1", rF)), collapse =", "),
                ", ...")
   sub("^([^,].*)", ", \\1", rF)
-})]
+}, character(1))]
 appMethods[, method := tocamel(tolower(method))]
 
 funcTemp <- list(
@@ -89,9 +89,10 @@ url = build_url(pathURL), source = \"{{method}}\", json = body,...)
 }
 ")
 
-appMethods[, RSLFuncs := sapply(rowSplit(appMethods), function(x){
+appMethods[, RSLFuncs := vapply(rowSplit(appMethods), function(x){
   whisker.render(funcTemp[["account"]], x)
-}
+},
+character(0)
 )]
 
 appMethods[, RSLFuncs := gsub("js tests, js tests", "js_tests", RSLFuncs)]
