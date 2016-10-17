@@ -5,8 +5,8 @@ library(magrittr)
 library(rvest)
 library(data.table)
 library(rapportools)
-library(RoxygenReady) #https://github.com/vertesy/roxygenready devtools::install_github(repo = "vertesy/RoxygenReady/RoxygenReady", ref = "cdf661e79f3a75405f4e30a3c2f8e6c39158d67f")
-library(whisker)
+library(RoxygenReady)
+
 slURL <- list(
   accountMethods =
     "https://wiki.saucelabs.com/display/DOCS/Account+Methods",
@@ -67,7 +67,8 @@ for(i in seq_along(orgVars)) temp <- gsub(orgVars[i], newVars[i], temp)
 appMethods[, version := ifelse(grepl("/rest/v1.1/", temp), "v1.1", "v1")]
 temp <- gsub("^(info/platforms/\\{\\{automation_api\\}\\}).*", "\\1", temp)
 temp <- gsub(
-  "^(\\{\\{username\\}\\}/jobs/\\{\\{job_id\\}\\}/assets/\\{\\{file_name\\}\\}).*",
+  paste0("^(\\{\\{username\\}\\}/jobs/\\{\\{job_id\\}\\}",
+         "/assets/\\{\\{file_name\\}\\}).*"),
   "\\1", temp)
 appMethods$url <- gsub("https://saucelabs.com/rest/v1.1/", "", temp)
 

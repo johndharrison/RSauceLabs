@@ -57,7 +57,8 @@ test_that("canGetListOfSubAccounts", {
 
 test_that("canGetListOfSiblingAccounts", {
   sibAccs <- getListOfSiblingAccounts(SLAccount, username = "rsaucelabs")
-  expect_identical(vapply(sibAccs, "[[", character(1), "username"), "testUser12367")
+  expect_identical(vapply(sibAccs, "[[", character(1), "username"),
+                   "testUser12367")
 }
 )
 
